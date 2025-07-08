@@ -34,7 +34,7 @@ if(process.env.NODE_ENV === "development"){
 };
 
 router.get('/admin',(req, res) => {
-    res.send("Admin Page");
+    res.render('admin');
 });
 
 router.post('/product/create',async (req, res) => {

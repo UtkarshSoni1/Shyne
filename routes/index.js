@@ -10,7 +10,7 @@ router.get('/',(req, res) => {
 router.get('/shop',(req, res) => {
     // let products = productModel.find();
     // res.render('shop', {products});
-    res.send("welcom to Shopping section");
+    res.render('shop');
 })
 
 module.exports = router;

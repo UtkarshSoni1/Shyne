@@ -13,7 +13,7 @@ const userRegister = async (req, res) => {
         if(user.length > 0){
             res.status(400).send("you already have an account please login");
         }
-        bcrypt.genSalt(10, (err, salt) =>{
+        bcrypt.genSalt(10, async (err, salt) =>{
             if (err) return res.send(err.message);
             bcrypt.hash(password, salt,async (err, hash) => {
                 if(err) console.log(err.message);
@@ -22,9 +22,9 @@ const userRegister = async (req, res) => {
                     email,
                     password:hash,
                 });
-                const token = generateToken(createdUser);
+                const token =  await generateToken(createdUser);
                 res.cookie("token",token);
-                res.send(createdUser);
+                return res.send(createdUser);
             });
         });
     }
@@ -39,7 +39,7 @@ const userLogin = async (req, res) => {
     if(!user){
         return res.status(400).send("user not found, please resigter");
     }
-    bcrypt.compare(password, user.password, (err, result) => {
+    await bcrypt.compare(password, user.password, async (err, result) => {
         
         if(err) return res.status(400).send('email or password incorrect');
         if(result){

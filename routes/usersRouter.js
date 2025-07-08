@@ -17,6 +17,10 @@ router.get('/',(req, res) => {
 
 router.post('/register',userRegister);
 
+router.get('/login',(req, res) => {
+    res.render('login');
+});
 router.post('/login', userLogin);
+
 
 module.exports = router;
