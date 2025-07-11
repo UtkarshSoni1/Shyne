@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+    <style>
+        body,
+        html {
+            height: 100vh;
+            width: 100vw;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="main" class="h-full w-full">
+        <div class="w-full h-[100px] flex items-center">
+            <h1 class="text-3xl font-bold pl-5">Admin Panel</h1>
+        </div>
+        <div id="content-area" class="h-full w-full border-t-2 flex flex-wrap">
+            <div id="sideBar" class="w-1/5 h-full p-10">
+                <div class="w-full h-1/3 mt-12 flex flex-col gap-1 p-4 space-y-2">
+                    <label class="cursor-pointer">
+                        <input type="radio" name="filter1" class="peer hidden">
+                        <div class="peer-checked:text-black peer-checked:font-bold text-gray-400">
+                            <a href="">All Products</a>
+                        </div>
+                    </label>
+
+                    <label class="cursor-pointer">
+                        <input type="radio" name="filter1" class="peer hidden" checked>
+                        <div class="peer-checked:text-black peer-checked:font-bold text-gray-400">
+                            <a href="/products/create">Create New Product</a>
+                        </div>
+                    </label>
+
+                </div>
+
+            </div>
+            <div id="body" class="w-4/5 h-full p-5">
+                <h1 class="text-3xl h-10">Create Product</h1>
+                <div class="w-full h-[2px] bg-zinc-500 mt-10"></div>
+                <h1 class="text-2xl h-10 mt-10">Product Details</h1>
+                <form action="/owners/products/create" method="post" enctype="multipart/form-data" class="flex flex-col gap-3">
+                    <div class="w-full h-12 flex gap-5 items-center">
+                        <h1 class="text-xl font-semibold">Product Image</h1>
+                        <label class="cursor-pointer  bg-blue-600 text-white rounded-3xl w-32 h-10 flex items-center justify-center">
+                            <h1 class="text-xl">select</h1>
+                            <input type="file" name="image" class="hidden">
+                        </label>
+                    </div>
+                    <input type="text" name="name" placeholder="Product Name" class="w-80 h-11 text-center bg-zinc-300 rounded-md">
+                    <div class="w-full h-12 flex gap-5 items-center">
+                        <input type="text" name="price" placeholder="Product Price" class="w-36 h-11 text-center bg-zinc-300 rounded-md">
+                        <input type="text" name="discounted" placeholder="Discount Price" class="w-36 h-11 text-center bg-zinc-300 rounded-md">
+                    </div>
+                    <h1 class="text-xl font-semibold mt-10">Panel details</h1>
+                    <div class="w-82 h-24 flex flex-wrap gap-2">
+                        <input type="text" name="bgcolor" placeholder="Background Color" class="w-40 h-11 text-center bg-zinc-300 rounded-md">
+                        <input type="text" name="panelcolor" placeholder="Panel Color" class="w-40 h-11 text-center bg-zinc-300 rounded-md">
+                        <input type="text" name="textcolor" placeholder="Text Color" class="w-40 h-11 text-center bg-zinc-300 rounded-md">
+                    </div>
+                    <input type="submit" value="Create" class="bg-green-600 text-white rounded-3xl w-32 h-10 flex items-center justify-center">
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

@@ -1,4 +1,5 @@
 const express = require('express');
+const productModel = require('../models/product-model');
 const router = express.Router();
 
 
@@ -7,10 +8,11 @@ router.get('/',(req, res) => {
     res.render('index');
 })
 
-router.get('/shop',(req, res) => {
+router.get('/shop',async (req, res) => {
     // let products = productModel.find();
     // res.render('shop', {products});
-    res.render('shop');
+    let product = await productModel.find();
+    res.render('shop',{product});
 })
 
 module.exports = router;

@@ -4,6 +4,8 @@ const router = express.Router();
 const flash = require('flash');
 const session = require('express-session');
 const productModel = require('../models/product-model');
+const upload = require('../utils/multer-config')
+
 
 router.use(express.json());
 router.use(express.urlencoded({extended : true}));
@@ -33,27 +35,43 @@ if(process.env.NODE_ENV === "development"){
     })
 };
 
-router.get('/admin',(req, res) => {
-    res.render('admin');
+router.get('/admin',async (req, res) => {
+    try{
+        let product = await productModel.find();
+        res.render('admin',{product});
+    }
+    catch(err){
+        req.flash(err.message);
+    }
 });
 
-router.post('/product/create',async (req, res) => {
-    let {name, price, discount, bgcolor, panelcolor, textcolor} = req.body;
-    const image = req.file ? `./public/uploads/${req.file.filename}` : undefined;
-    let product = productModel.find({name: name});
-    if( product.length > 0){
-        req.flash('error', 'product already exists');
-        return res.redirect('/product/create');
+router.get('/products/create',async (req,res) => {
+    res.render('create');
+})
+
+router.post('/products/create',upload.single('image'), async (req, res) => {
+    try{
+        let {name, price, discount, bgcolor, panelcolor, textcolor} = req.body;
+        const image = req.file.filename;
+        let product = productModel.find({name: name});
+        if( product.length > 0){
+            req.flash('error', 'product already exists');
+            return res.redirect('/product/create');
+        }
+        let createdProduct = await productModel.create({
+            image,
+            name,
+            price,
+            discount,
+            bgcolor,
+            panelcolor,
+            textcolor
+        });
+        res.redirect('/owners/admin');
     }
-    let createdProduct = await productModel.create({
-        image,
-        name,
-        price,
-        discount,
-        bgcolor,
-        panelcolor,
-        textcolor
-    });
+    catch(err){
+        res.send(err.message);
+    }
 })
 
 module.exports = router;

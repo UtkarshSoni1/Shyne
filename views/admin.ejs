@@ -26,7 +26,7 @@
             <div id="sideBar" class="w-1/5 h-full p-10">
                 <div class="w-full h-1/3 mt-12 flex flex-col gap-1 p-4 space-y-2">
                     <label class="cursor-pointer">
-                        <input type="radio" name="filter1" class="peer hidden">
+                        <input type="radio" name="filter1" class="peer hidden" checked>
                         <div class="peer-checked:text-black peer-checked:font-bold text-gray-400">
                             <a href="">All Products</a>
                         </div>
@@ -35,16 +35,34 @@
                     <label class="cursor-pointer">
                         <input type="radio" name="filter1" class="peer hidden">
                         <div class="peer-checked:text-black peer-checked:font-bold text-gray-400">
-                            <a href="">Create New Product</a>
+                            <a href="/owners/products/create">Create New Product</a>
                         </div>
                     </label>
 
                 </div>
 
             </div>
-            <div id="body" class="w-4/5 h-full p-10 flex flex-wrap gap-10 ">
-
-
+            <div id="body" class="w-4/5 h-full p-5 flex flex-wrap gap-8 ">
+                <% if(product.length > 0){ %>
+                    <% product.forEach(function(val){ %>
+                        <div class="h-[40%] w-[20%] flex flex-col rounded-md overflow-hidden">
+                            <div class="h-2/3 w-full" style="background-color: #<%= val.bgcolor %>;">
+                                <img src="/uploads/<%= val.image %>" alt="" class="w-full h-full object-contain overflow-hidden">
+                            </div>
+                            <div class="h-1/3 w-full flex flex-wrap justify-around items-center" style="background-color: #<%= val.panelcolor %>;">
+                                <div>
+                                    <h1 class="text-2xl" style="color: #<%= val.textcolor %>"><%= val.name %></h1>
+                                    <h1 class="text-2xl" style="color: #<%= val.textcolor %>">₹<%= val.price %></h1>
+                                </div>
+                                <button class="h-10 w-10 rounded-full bg-white flex justify-center items-center transition delay-75 duration-300 ease-in" id="addbtn" onclick="toggleIcon()">
+                                    <i class="fa-solid fa-plus "></i>                     
+                                </button>
+                            </div>
+                        </div>
+                        <% }) %>
+                    <% }else{ %>
+                        <h1>No products yet</h1>
+                        <% } %>
             </div>
         </div>
     </div>
