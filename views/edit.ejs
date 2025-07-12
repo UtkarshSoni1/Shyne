@@ -33,7 +33,7 @@
                     </label>
 
                     <label class="cursor-pointer">
-                        <input type="radio" name="filter1" class="peer hidden" checked>
+                        <input type="radio" name="filter1" class="peer hidden" >
                         <div class="peer-checked:text-black peer-checked:font-bold text-gray-400">
                             <a href="/products/create">Create New Product</a>
                         </div>
@@ -43,29 +43,29 @@
 
             </div>
             <div id="body" class="w-4/5 h-full p-5">
-                <h1 class="text-3xl h-10">Create Product</h1>
+                <h1 class="text-3xl h-10">Edit Product</h1>
                 <div class="w-full h-[2px] bg-zinc-500 mt-10"></div>
                 <h1 class="text-2xl h-10 mt-10">Product Details</h1>
-                <form action="/owners/products/create" method="post" enctype="multipart/form-data" class="flex flex-col gap-3">
+                <form action="/owners/products/edit/<%= product.id %>" method="post" enctype="multipart/form-data" class="flex flex-col gap-3">
                     <div class="w-full h-12 flex gap-5 items-center">
                         <h1 class="text-xl font-semibold">Product Image</h1>
                         <label class="cursor-pointer  bg-blue-600 text-white rounded-3xl w-32 h-10 flex items-center justify-center">
                             <h1 class="text-xl">select</h1>
-                            <input type="file" name="image" class="hidden">
+                            <input type="file" name="newimage" class="hidden" value="<%= product.image %>">
                         </label>
                     </div>
-                    <input type="text" name="name" placeholder="Product Name" class="w-80 h-11 text-center bg-zinc-300 rounded-md">
+                    <input type="text" name="newname" value="<%= product.name %>" class="w-80 h-11 text-center bg-zinc-300 rounded-md">
                     <div class="w-full h-12 flex gap-5 items-center">
-                        <input type="text" name="price" placeholder="Product Price" class="w-36 h-11 text-center bg-zinc-300 rounded-md">
-                        <input type="text" name="discount" placeholder="Discount Price" class="w-36 h-11 text-center bg-zinc-300 rounded-md">
+                        <input type="text" name="newprice" value="<%= product.price %>" class="w-36 h-11 text-center bg-zinc-300 rounded-md">
+                        <input type="text" name="newdiscount" value="<%= product.discoount %>" class="w-36 h-11 text-center bg-zinc-300 rounded-md">
                     </div>
                     <h1 class="text-xl font-semibold mt-10">Panel details</h1>
                     <div class="w-82 h-24 flex flex-wrap gap-2">
-                        <input type="text" name="bgcolor" placeholder="Background Color" class="w-40 h-11 text-center bg-zinc-300 rounded-md">
-                        <input type="text" name="panelcolor" placeholder="Panel Color" class="w-40 h-11 text-center bg-zinc-300 rounded-md">
-                        <input type="text" name="textcolor" placeholder="Text Color" class="w-40 h-11 text-center bg-zinc-300 rounded-md">
+                        <input type="text" name="newbgcolor" value="<%= product.bgcolor %>" class="w-40 h-11 text-center bg-zinc-300 rounded-md">
+                        <input type="text" name="newpanelcolor" value="<%= product.panelcolor %>" class="w-40 h-11 text-center bg-zinc-300 rounded-md">
+                        <input type="text" name="newtextcolor" value="<%= product.textcolor %>" class="w-40 h-11 text-center bg-zinc-300 rounded-md">
                     </div>
-                    <input type="submit" value="Create" class="bg-green-600 text-white rounded-3xl w-32 h-10 flex items-center justify-center">
+                    <input type="submit" value="Save" class="bg-green-600 text-white rounded-3xl w-32 h-10 flex items-center justify-center">
 
                 </form>
             </div>

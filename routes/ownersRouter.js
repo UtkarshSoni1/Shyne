@@ -72,6 +72,33 @@ router.post('/products/create',upload.single('image'), async (req, res) => {
     catch(err){
         res.send(err.message);
     }
+});
+
+router.get('/products/edit/:id', async (req, res) => {
+    let product = await productModel.findOne({ _id: req.params.id});
+    res.render('edit',{product});
+});
+
+router.post('/products/edit/:id',upload.single('newimage'), async (req, res) => {
+    try{
+        const {newname,newprice,newdiscount,newbgcolor,newpanelcolor,newtextcolor} = req.body;
+        updateData = {
+            name: newname,
+            price: newprice,
+            discount: newdiscount,
+            bgcolor: newbgcolor,
+            panelcolor: newpanelcolor,
+            textcolor: newtextcolor,
+        }
+        if(req.file){
+            updateData.image = req.file.filename;
+        }       
+        let updatedProduct = await productModel.findOneAndUpdate({_id : req.params.id},updateData,{new: true});
+        res.redirect('/owners/admin');
+    }
+    catch(err){
+        res.send(err.message);
+    }
 })
 
 module.exports = router;

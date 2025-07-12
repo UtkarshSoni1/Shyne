@@ -45,18 +45,23 @@
             <div id="body" class="w-4/5 h-full p-5 flex flex-wrap gap-8 ">
                 <% if(product.length > 0){ %>
                     <% product.forEach(function(val){ %>
-                        <div class="h-[40%] w-[20%] flex flex-col rounded-md overflow-hidden">
-                            <div class="h-2/3 w-full" style="background-color: #<%= val.bgcolor %>;">
-                                <img src="/uploads/<%= val.image %>" alt="" class="w-full h-full object-contain overflow-hidden">
+                        <div class="h-[40%] w-[20%] flex flex-col rounded-md overflow-hidden relative">
+                            <div class="h-2/3 w-full relative" style="background-color: #<%= val.bgcolor %>;">
+                                <img src="/uploads/<%= val.image %>" alt="" class="w-full h-full object-contain overflow-hidden z-10">
                             </div>
                             <div class="h-1/3 w-full flex flex-wrap justify-around items-center" style="background-color: #<%= val.panelcolor %>;">
                                 <div>
                                     <h1 class="text-2xl" style="color: #<%= val.textcolor %>"><%= val.name %></h1>
                                     <h1 class="text-2xl" style="color: #<%= val.textcolor %>">₹<%= val.price %></h1>
                                 </div>
-                                <button class="h-10 w-10 rounded-full bg-white flex justify-center items-center transition delay-75 duration-300 ease-in" id="addbtn" onclick="toggleIcon()">
+                                <div class="h-10 w-10 bg-white  rounded-full z-50 text-xl text-black  flex justify-center items-center top-2 right-2">
+                                    <a href="/owners/products/edit/<%= val.id %>" class="flex justify-center items-center">
+                                        <i class="fa-solid fa-pencil"></i>
+                                    </a>
+                                </div>
+                                <!-- <button class="h-10 w-10 rounded-full bg-white flex justify-center items-center transition delay-75 duration-300 ease-in" id="addbtn" onclick="toggleIcon()">
                                     <i class="fa-solid fa-plus "></i>                     
-                                </button>
+                                </button> -->
                             </div>
                         </div>
                         <% }) %>

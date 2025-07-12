@@ -12,10 +12,13 @@
         html {
             height: 100vh;
             width: 100vw;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
+
         .hide-scrollbar {
             -ms-overflow-style: none;
-            scrollbar-width: none;   
+            scrollbar-width: none;
         }
 
         .hide-scrollbar::-webkit-scrollbar {
@@ -25,20 +28,36 @@
 
 </head>
 
-<body class="hide-scrollbar">
-    <div id="main" class="h-full w-full hide-scrollbar overflow-y-scroll">
-        <div class="w-full h-[80px] flex justify-center sticky top-2 z-20">
-            <div id="navbar" class="w-[80%] h-[80px] flex flex-wrap  items-center justify-between   overflow-hidden bg-blue-300/30 backdrop-blur-sm rounded-[50px]">
+<body>
+    <div id="main" class="h-full w-full hide-scrollbar scrollbar-hide overflow-y-scroll">
+        <div class="w-full h-[80px] flex justify-center sticky top-2 z-20 bg-white">
+            <div id="navbar"
+                class="w-[80%] h-[80px] flex flex-wrap  items-center justify-between   overflow-hidden bg-blue-300/30 backdrop-blur-sm rounded-[50px]">
                 <div class="w-1/4 h-full flex items-center ">
                     <h1 class="text-4xl font-bold w-1/2 ml-10">Shop</h1>
                 </div>
-                <div class="w-[40%] h-2/3 rounded-4xl bg-blue-300 flex items-center justify-center text-2xl text-white outline-none">
+                <div
+                    class="w-[40%] h-2/3 rounded-4xl bg-blue-300 flex items-center justify-center text-2xl text-white outline-none">
                     <input type="text" placeholder="Search" class="text-2xl text-white outline-none">
                     <i class="fa-solid fa-magnifying-glass text-white text-2xl"></i>
                 </div>
-                <div class="w-1/4 h-full flex gap-5 items-center  justify-center">
-                    <a href="#" class="text-2xl hover:text-blue-400 font-semibold">cart</a>
-                    <a href="#" class="text-2xl hover:text-blue-400 font-semibold">My Account</a>
+                <div class="w-1/4 h-full flex items-center ">
+                    <div class="h-full w-1/2 flex items-center justify-center">
+                        <a href="#" class="text-4xl text-blue-400 font-semibold">
+                            <div class="relative w-10 h-10 group">
+                                <i class="fa-solid fa-cart-plus absolute inset-0 flex items-center justify-center group-hover:opacity-0 transition-opacity duration-200"></i>
+                                <i class="fa-solid fa-cart-shopping absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200"></i>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="h-full w-1/2 flex items-center justify-center">
+                        <a href="#" class="text-4xl text-blue-400 font-semibold ">
+                            <div class="group relative h-10 w-10">
+                                <i class="fa-regular fa-user absolute top-0 left-0 group-hover:opacity-0"></i>
+                                <i class="fa-solid fa-user opacity-0 absolute top-0 left-0 group-hover:opacity-100"></i>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -57,14 +76,14 @@
                             class="peer-checked:text-black peer-checked:font-semibold text-gray-400 cursor-pointer">New
                             Collection</span>
                     </label>
-    
+
                     <label>
                         <input type="radio" name="filter1" class="hidden peer" checked>
                         <span
                             class="peer-checked:text-black peer-checked:font-semibold text-gray-400 cursor-pointer">All
                             Products</span>
                     </label>
-    
+
                     <label>
                         <input type="radio" name="filter1" class="hidden peer">
                         <span
@@ -89,44 +108,56 @@
                         </label>
                     </div>
                 </div>
-    
+
             </div>
-            <div id="body" class="w-4/5 h-full p-10 flex flex-wrap gap-10 overflow-hidden">
-                <% if(product.length > 0){ %>
+            <div id="body"
+                class="w-4/5 h-full p-10 flex flex-wrap gap-10 overflow-hidden overflow-y-auto hide-scrollbar">
+                <% if(product.length> 0){ %>
                     <% product.forEach(function(val){ %>
                         <div class="h-[40%] w-[20%] flex flex-col rounded-md overflow-hidden">
                             <div class="h-2/3 w-full" style="background-color: #<%= val.bgcolor %>;">
-                                <img src="/uploads/<%= val.image %>" alt="" class="w-full h-full object-contain overflow-hidden">
+                                <img src="/uploads/<%= val.image %>" alt=""
+                                    class="w-full h-full object-contain overflow-hidden">
                             </div>
-                            <div class="h-1/3 w-full flex flex-wrap justify-around items-center" style="background-color: #<%= val.panelcolor %>;">
-                                <div>
-                                    <h1 class="text-2xl" style="color: #<%= val.textcolor %>"><%= val.name %></h1>
-                                    <h1 class="text-2xl" style="color: #<%= val.textcolor %>">₹<%= val.price %></h1>
+                            <div class="h-1/3 w-full flex flex-wrap justify-around items-center"
+                                style="background-color: #<%= val.panelcolor %>;">
+                                <div class="flex flex-col gap-[-2px]">
+                                    <h1 class="text-2xl" style="color: #<%= val.textcolor %>">
+                                        <%= val.name %>
+                                    </h1>
+                                    <h1 class="text-xl" style="color: #<%= val.textcolor %>">
+                                        ₹<%= val.price %>
+                                    </h1>
+                                    <% if(val.discount> 0){ %>
+                                        <h1 class="text-xl text-green-500">₹<%= val.discount %> off</h1>
+                                        <% } %>
                                 </div>
-                                <button class="h-10 w-10 rounded-full bg-white flex justify-center items-center transition delay-75 duration-300 ease-in" id="addbtn" onclick="toggleIcon()">
-                                    <i class="fa-solid fa-plus "></i>                     
+                                <button
+                                    class="h-10 w-10 rounded-full bg-white flex justify-center items-center transition delay-75 duration-300 ease-in"
+                                    id="addbtn" onclick="toggleIcon()">
+                                    <i class="fa-solid fa-plus "></i>
                                 </button>
                             </div>
                         </div>
                         <% }) %>
-                    <% }else{ %>
-                        <h1>No products yet</h1>
-                        <% } %>
+                            <% }else{ %>
+                                <h1>No products yet</h1>
+                                <% } %>
 
 
             </div>
         </div>
     </div>
-
+    <h1 class="text-3xl text-green-400">green text test</h1>
     <script>
         let c = 1;
         function toggleIcon() {
             const icon = document.querySelector('#addbtn');
-            if( c === 1){
+            if (c === 1) {
                 icon.innerHTML = `<i class="fa-solid fa-check"></i>`;
                 c = 0;
             }
-            else{
+            else {
                 icon.innerHTML = `<i class="fa-solid fa-plus"></i>`;
                 c = 1;
             }
