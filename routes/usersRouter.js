@@ -18,9 +18,27 @@ router.get('/',(req, res) => {
 router.post('/register',userRegister);
 
 router.get('/login',(req, res) => {
-    res.render('login');
+    try{res.render('login');}
+    catch(err){
+        res.send(err.message);
+    }
 });
 router.post('/login', userLogin);
 
+router.get('/cart/:id',async (req, res) => {
+    try{
+        let user = userModel.findOne({_id : req.params.id}).populate('')
+        res.render('cart');
+    }
+    catch(err){
+        res.send(err.message);
+    }
+});
+router.get('/account/:id',(req, res) => {
+    try{res.send('welcome to account !!')}
+    catch(err){
+        res.send(err.message);
+    }
+});
 
 module.exports = router;

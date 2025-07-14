@@ -11,7 +11,7 @@ const userRegister = async (req, res) => {
 
         let user = await userModel.find({ email:email});
         if(user.length > 0){
-            res.status(400).send("you already have an account please login");
+            return res.status(400).send("you already have an account please login");
         }
         bcrypt.genSalt(10, async (err, salt) =>{
             if (err) return res.send(err.message);
@@ -24,7 +24,7 @@ const userRegister = async (req, res) => {
                 });
                 const token =  await generateToken(createdUser);
                 res.cookie("token",token);
-                return res.send(createdUser);
+                return res.redirect(`/shop/${createdUser._id}`);
             });
         });
     }
@@ -45,7 +45,7 @@ const userLogin = async (req, res) => {
         if(result){
             const token = generateToken(user);
             res.cookie("token",token);
-            res.send('login successful');
+            return res.redirect(`/shop/${user._id}`);
         }
     });
 }

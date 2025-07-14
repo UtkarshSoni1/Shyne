@@ -27,3 +27,5 @@ const isLoggedIn = async (req, res, next) => {
     return res.redirect('/');
   }
 };
+
+module.exports = isLoggedIn;
