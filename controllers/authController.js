@@ -3,7 +3,6 @@ const userModel = require('../models/user-model');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const generateToken = require("../utils/generateToken");
-const flash = require('flash');
 
 const userRegister = async (req, res) => {
     try{

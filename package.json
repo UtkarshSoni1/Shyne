@@ -25,6 +25,7 @@
     "concat-map": "^0.0.1",
     "concat-stream": "^2.0.0",
     "config": "^4.0.0",
+    "connect-flash": "^0.1.1",
     "content-disposition": "^1.0.0",
     "content-type": "^1.0.5",
     "cookie": "^0.7.2",

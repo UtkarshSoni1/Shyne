@@ -27,8 +27,8 @@ router.post('/login', userLogin);
 
 router.get('/cart/:id',async (req, res) => {
     try{
-        let user = userModel.findOne({_id : req.params.id}).populate('')
-        res.render('cart');
+        let user = await userModel.findOne({_id : req.params.id}).populate('cart');
+        res.render('cart',{user});
     }
     catch(err){
         res.send(err.message);

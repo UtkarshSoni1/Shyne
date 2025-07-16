@@ -1,8 +1,6 @@
 const express = require('express');
 const ownerModel = require('../models/owner-model');
 const router = express.Router();
-const flash = require('flash');
-const session = require('express-session');
 const productModel = require('../models/product-model');
 const upload = require('../utils/multer-config')
 

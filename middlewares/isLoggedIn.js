@@ -1,7 +1,5 @@
 const jwt = require('jsonwebtoken');
 const userModel = require('../models/user-model');
-const flash = require('flash');
-const session = require('express-session');
 
 const isLoggedIn = async (req, res, next) => {
   try {

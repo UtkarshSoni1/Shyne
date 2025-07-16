@@ -5,7 +5,7 @@ const usersRouter = require("./routes/usersRouter");
 const productsRouter = require("./routes/productsRouter");
 const indexRouter = require('./routes/index');
 const session = require('express-session');
-const flash = require('flash');
+const flash = require('connect-flash');
 
 const db = require("./config/mongoose-connection")
 
@@ -21,11 +21,22 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.set("view engine","ejs");
 
+app.use(session({
+  secret: 'shyneSecret', // use a strong secret
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(flash());
+
+app.use((req, res, next) => {
+  res.locals.messages = req.flash();
+  next();
+});
+
 app.use("/owners",ownersRouter);
 app.use("/users",usersRouter);
 app.use("/products",productsRouter);
 app.use("/", indexRouter);
-
 
 
 app.listen(3000);

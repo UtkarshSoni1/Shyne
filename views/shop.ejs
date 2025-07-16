@@ -29,11 +29,29 @@
 </head>
 
 <body>
+    <% if (Array.isArray(success) && success.length > 0) { %>
+        <% success.forEach(function(msg) { %>
+            <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-green-200 text-green-800 p-2 rounded flash-msg">
+                <span class="inline-block mt-1 mb-1 ">
+                    <%= msg %>
+                </span>
+            </div>
+        <% }) %>
+    <% } %>
+    <% if (Array.isArray(info) && info.length > 0) { %>
+        <% info.forEach(function(msg) { %>
+            <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-200 text-blue-800 p-2 rounded flash-msg">
+                <span class="inline-block mt-1 mb-1 ">
+                    <%= msg %>
+                </span>
+            </div>
+        <% }) %>
+    <% } %>
+    
     <div id="main" class="h-full w-full hide-scrollbar scrollbar-hide overflow-y-scroll">
         <div class="w-full h-[40px] flex justify-center sticky top-2 z-20 bg-white 
         sm:h-[80px]">
-            <div id="navbar"
-                class="
+            <div id="navbar" class="
                 w-full h-[40px] flex flex-wrap  items-center justify-between overflow-hidden bg-blue-300/30 backdrop-blur-sm rounded-[50px]  
                 sm:w-[80%] sm:h-[80px] ">
                 <div class="w-[30%] h-full flex items-center ">
@@ -42,8 +60,7 @@
                     sm:text-4xl sm:font-bold sm:w-1/2 sm:ml-10 
                     lg:text-5xl">Shyne</h1>
                 </div>
-                <div
-                    class="
+                <div class="
                     w-[40%] h-2/3 rounded-4xl bg-blue-300 flex  items-center text-xl text-white outline-none 
                     sm:w-[40%] sm:h-2/3 ">
                     <input type="text" placeholder="" name="searchInput" class="
@@ -162,15 +179,18 @@
                                         ₹<%= val.price %>
                                     </h1>
                                     <% if(val.discount> 0){ %>
-                                        <h1 class="text-[16px] text-green-500 sm:text-xl">₹<%= val.discount %> off</h1>
+                                        <h1 class="text-[16px] text-green-500 sm:text-xl">₹<%= val.discount %>
+                                                off</h1>
                                         <% } %>
                                 </div>
-                                
+
                                 <button class="h-7 w-7  rounded-full bg-white flex justify-center items-center transition delay-75 duration-300 ease-in 
                                     sm:h-10 sm:w-10 addbtn" onclick="toggleIcon(this)">
-                                   <i class="fa-solid fa-plus "></i>
+                                    <a href="/addtocart/<%= val.id %>">
+                                        <i class="fa-solid fa-plus "></i>
+                                    </a>
                                 </button>
-                                
+
                             </div>
                         </div>
                         <% }) %>
@@ -194,6 +214,9 @@
                 icon.classList.add("fa-plus");
             }
         }
+        setTimeout(() => {
+            document.querySelectorAll('.flash-msg').forEach(el => el.style.display = 'none');
+        }, 3000);
 
     </script>
 </body>
