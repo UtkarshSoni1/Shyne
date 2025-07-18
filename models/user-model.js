@@ -8,6 +8,8 @@ const userSchema = mongoose.Schema({
     },
     email: String,
     password: String,
+    address: String,
+    mobile: Number,
     cart: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'product',
@@ -16,7 +18,7 @@ const userSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'product',
     }],
-    contact: Number,
+    pincode: Number,
     picture: String,
 });
 

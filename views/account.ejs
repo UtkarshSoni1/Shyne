@@ -1,0 +1,72 @@
+<%# Start of Selection %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+</head>
+<body class="h-screen w-screen bg-[#f0f2f5] m-0 p-0">
+    <div class="h-[70px] w-full sticky top-0 bg-white z-50">
+        <div id="topsec" class="h-full w-full text-[#34664f] bg-[#f0f2f5]">
+            <div class="w-full h-[70px] flex items-center justify-between border-b-2 border-black">
+                <div class="w-1/3 h-full pl-10 flex justify-start items-center">
+                    <h1 class="text-5xl pl-10">Cart</h1>
+                </div>
+                <div class="w-1/3 h-full pr-10 flex justify-end gap-10 items-center text-3xl">
+                    <a href="/shop/<%= user.id %>" class="hover:text-[#f1a155]">
+                        <i class="fa-solid fa-house"></i>
+                    </a>
+                    <a href="/user/account/" class="hover:text-[#f1a155]">
+                        <i class="fa-solid fa-bars"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="main" class="flex h-[calc(100vh-70px)] w-full bg-[#f0f2f5]">
+        <div id="leftside" class="flex flex-col items-center h-full w-1/5 bg-[#f0f2f5]">
+            <div id="user" class="min-h-15 w-4/5 bg-white flex items-center gap-5 pl-3 mt-3">
+                <div class="h-12 w-12 flex items-center">
+                    <div class="rounded-full overflow-hidden w-12 h-12">
+                        <img src="/images/image.png" class="object-cover w-12 h-12 rounded-full">
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-xl">Hello</span>
+                    <span class="text-xl font-semibold"><%= user.fullname %></span>
+                </div>
+            </div>
+            <div id="menu" class="flex flex-col flex-1 w-4/5 bg-zinc-500">
+                <div id="myorders" class="w-full min-h-15 flex items-center border-b-2 border-[#f0f2f5] px-4">My Orders</div>
+                <div id="setting" class="w-full min-h-60 flex items-center border-b-2 border-[#f0f2f5] px-4">Settings</div>
+                <div id="payments" class="w-full min-h-60 flex items-center border-b-2 border-[#f0f2f5] px-4">Payments</div>
+                <div id="mystuff" class="w-full min-h-75 flex items-center border-b-2 border-[#f0f2f5] px-4">My Stuff</div>
+                <div id="logout" class="w-full min-h-15 flex items-center border-b-2 border-[#f0f2f5] px-4">Logout</div>
+            </div>
+        </div>
+        <div id="rightside" class="h-full w-4/5 bg-[#f0f2f5] mt-3">
+            <div class="h-60 w-full  flex flex-col gap-5 pl-10 pt-5">
+                <span class="text-2xl font-semibold">Personal Information</span>
+                <form action="" method="post">
+                    <input type="text" name="name" value="<%= user.fullname %>" class="w-60 h-14 bg-zinc-50 outline-none pl-3 text-xl">
+                </form>
+            </div>
+            <div class="h-60 w-full  flex flex-col gap-5 pl-10 pt-5">
+                <span>email Address</span>
+                <form action="" method="post">
+                    <input type="text" name="name" value="<%= user.email %>" class="w-60 h-14 bg-zinc-50 outline-none pl-3 text-xl">
+                </form>
+            </div>
+            <div class="h-60 w-full  flex flex-col gap-5 pl-10 pt-5">
+                <span>Mobile Number</span>
+                <form action="" method="post">
+                    <input type="text" name="name" value="<%= user.mobile %>" class="w-60 h-14 bg-zinc-50 outline-none pl-3 text-xl">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

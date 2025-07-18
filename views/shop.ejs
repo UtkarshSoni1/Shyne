@@ -28,7 +28,7 @@
 
 </head>
 
-<body>
+<body class="bg-[#F9FAFB]">
     <% if (Array.isArray(success) && success.length > 0) { %>
         <% success.forEach(function(msg) { %>
             <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-green-200 text-green-800 p-2 rounded flash-msg">
@@ -49,11 +49,12 @@
     <% } %>
     
     <div id="main" class="h-full w-full hide-scrollbar scrollbar-hide overflow-y-scroll">
-        <div class="w-full h-[40px] flex justify-center sticky top-2 z-20 bg-white 
+        <div class="w-full h-[40px] flex justify-center top-0 sticky t z-20 bg-[#F9FAFB] 
         sm:h-[80px]">
             <div id="navbar" class="
-                w-full h-[40px] flex flex-wrap  items-center justify-between overflow-hidden bg-blue-300/30 backdrop-blur-sm rounded-[50px]  
-                sm:w-[80%] sm:h-[80px] ">
+                w-full h-[40px] flex flex-wrap  items-center justify-between overflow-hidden bg-[#34664f]   
+                sm:max-lg:w-[80%] sm:h-[80px] 
+                lg:w-full">
                 <div class="w-[30%] h-full flex items-center ">
                     <h1 class="
                     text-2xl font-bold w-1/2 ml-3 text-[#F1A155]
@@ -61,30 +62,33 @@
                     lg:text-5xl">Shyne</h1>
                 </div>
                 <div class="
-                    w-[40%] h-2/3 rounded-4xl bg-blue-300 flex  items-center text-xl text-white outline-none 
+                    w-[40%] h-2/3 pl-10 rounded-4xl bg-white flex items-center text-xl text-[#F1A155] outline-none z-50
                     sm:w-[40%] sm:h-2/3 ">
-                    <input type="text" placeholder="" name="searchInput" class="
-                    text-xl text-white outline-none w-[80%]
-                    sm:text-2xl sm:text-white ">
-                    <i class="fa-solid fa-magnifying-glass text-black mr-0 text-xl 
+                    <input type="text" placeholder="search by name" name="searchInput" class="
+                    text-xl text-[#34664f] outline-none w-[80%]
+                    sm:text-2xl ">
+                    <i class="fa-solid fa-magnifying-glass  pr-0 text-xl 
                     sm:text-2xl
                     lg:text-4xl"></i>
                 </div>
-                <div class="w-[30%] h-full flex items-center justify-end gap-10 text-xl pr-8
+                <div class="w-[30%] h-full flex items-center text-white justify-end gap-10 text-xl pr-8
                 sm:text-2xl
                 lg:text-4xl">
                     <a href="/users/cart/<%= user._id %>">
-                        <i class="fa-solid fa-cart-shopping hover:text-blue-400"></i>
+                        <i class="fa-solid fa-cart-shopping hover:text-[#F1A155]"></i>
                     </a>
                     <a href="/users/account/<%= user._id %>">
-                        <i class="fa-solid fa-user hover:text-blue-400"></i>
+                        <i class="fa-solid fa-user hover:text-[#F1A155]"></i>
+                    </a>
+                    <a href="/users/account/<%= user._id %>">
+                        <i class="fa-solid fa-bars hover:text-[#F1A155]"></i>
                     </a>
                 </div>
 
             </div>
         </div>
         <div id="content-area" class="h-full w-full  flex flex-wrap z-10">
-            <div id="sideBar" class="w-1/5 h-[80%] p-10 sticky top-28 z-10 hidden
+            <div id="sideBar" class="w-1/5 h-[80%] p-10 sticky border-r-2 border-black top-28 z-10 hidden
             lg:block">
                 <label for="Sort By" class="outline-none">Sort By:
                     <select id="cars" name="sort" class="outline-none rounded-2xl">
@@ -96,37 +100,37 @@
                     <label>
                         <input type="radio" name="filter1" class="hidden peer">
                         <span
-                            class="peer-checked:text-black peer-checked:font-semibold text-gray-400 cursor-pointer">New
+                            class="peer-checked:text-black peer-checked:font-semibold text-zinc-700 cursor-pointer">New
                             Collection</span>
                     </label>
 
                     <label>
                         <input type="radio" name="filter1" class="hidden peer" checked>
                         <span
-                            class="peer-checked:text-black peer-checked:font-semibold text-gray-400 cursor-pointer">All
+                            class="peer-checked:text-black peer-checked:font-semibold text-zinc-700 cursor-pointer">All
                             Products</span>
                     </label>
 
                     <label>
                         <input type="radio" name="filter1" class="hidden peer">
                         <span
-                            class="peer-checked:text-black peer-checked:font-semibold text-gray-400 cursor-pointer">Discounted
+                            class="peer-checked:text-black peer-checked:font-semibold text-zinc-700 cursor-pointer">Discounted
                             Products</span>
                     </label>
                 </div>
                 <div class="p-4">
-                    <p class="text-gray-700 font-medium mb-2">Filter by:</p>
+                    <p class="text-black font-medium mb-2">Filter by:</p>
                     <div class="flex flex-col space-y-2">
                         <label>
                             <input type="radio" name="filter2" class="hidden peer" checked>
                             <div
-                                class="peer-checked:text-black peer-checked:font-semibold text-gray-400 cursor-pointer">
+                                class="peer-checked:text-black peer-checked:font-semibold text-zinc-700 cursor-pointer">
                                 Availability</div>
                         </label>
                         <label>
                             <input type="radio" name="filter2" class="hidden peer">
                             <div
-                                class="peer-checked:text-black peer-checked:font-semibold text-gray-400 cursor-pointer">
+                                class="peer-checked:text-black peer-checked:font-semibold text-zinc-700 cursor-pointer">
                                 Discount</div>
                         </label>
                     </div>
@@ -163,8 +167,8 @@
                 <% if(product.length> 0){ %>
                     <% product.forEach(function(val){ %>
                         <div class="
-                        h-[37%] w-[45%] flex flex-col rounded-md overflow-hidden
-                        sm:h-[40%] sm:w-[20%] ">
+                        h-[37%] w-[45%] flex flex-col rounded-md overflow-hidden shadow-md shadow-black
+                        sm:h-[40%] sm:w-[20%] hover:border-2 hover:border-[#F1A155] hover:shadow-md hover:shadow-[#F1A155]">
                             <div class="h-2/3 w-full" style="background-color: #<%= val.bgcolor %>;">
                                 <img src="/uploads/<%= val.image %>" alt=""
                                     class="w-full h-full object-contain overflow-hidden">
@@ -184,10 +188,10 @@
                                         <% } %>
                                 </div>
 
-                                <button class="h-7 w-7  rounded-full bg-white flex justify-center items-center transition delay-75 duration-300 ease-in 
-                                    sm:h-10 sm:w-10 addbtn" onclick="toggleIcon(this)">
+                                <button class="h-7 w-7 text-white rounded-full bg-[#F1A155] flex justify-center items-center transition delay-75 duration-300 ease-in 
+                                    sm:h-10 sm:w-10 addbtn " onclick="toggleIcon(this)">
                                     <a href="/addtocart/<%= val.id %>">
-                                        <i class="fa-solid fa-plus "></i>
+                                        <i class="fa-solid fa-cart-plus"></i>
                                     </a>
                                 </button>
 
@@ -201,23 +205,46 @@
 
             </div>
         </div>
+    <footer class="w-full bg-[#34664f] text-white py-6 px-4  bottom-0 left-0 flex flex-col sm:flex-row justify-between items-center z-50">
+        <div class="flex flex-col sm:flex-row gap-4 sm:gap-10 mb-2 sm:mb-0">
+            <a href="/contact" class="hover:text-[#F1A155] transition-colors duration-200">Contact Us</a>
+            <a href="/feedback" class="hover:text-[#F1A155] transition-colors duration-200">Feedback</a>
+            <a href="/services" class="hover:text-[#F1A155] transition-colors duration-200">Services</a>
+        </div>
+        <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
+            <span class="flex items-center gap-1">
+                Made with <span class="text-red-500 text-lg">♥</span> By                
+                <span class="font-semibold">Utkarsh</span>
+            </span>
+            <div class="flex gap-3 ml-0 sm:ml-2">
+                <a href="https://www.linkedin.com/in/utkarsh-soni-6bb1b2322/" target="_blank" rel="noopener" class="hover:text-[#0A66C2]">
+                    <i class="fab fa-linkedin fa-lg"></i>
+                </a>
+                <a href="https://github.com/utkarshsoni1" target="_blank" rel="noopener" class="hover:text-gray-400">
+                    <i class="fab fa-github fa-lg"></i>
+                </a>
+                <a href="mailto:utkarshsoni7777@gmail.com" class="hover:text-[#EA4335]">
+                    <i class="fas fa-envelope fa-lg"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
     </div>
     <script>
-        // let button = document.querySelector(".addbtn") 
+        // Update cart icon to show a checkmark when added to cart, revert to cart-plus otherwise
         function toggleIcon(button) {
             const icon = button.querySelector("i");
-            if (icon.classList.contains("fa-plus")) {
-                icon.classList.remove("fa-plus");
-                icon.classList.add("fa-check");
+            if (icon.classList.contains("fa-cart-plus")) {
+                icon.classList.remove("fa-cart-plus");
+                icon.classList.add("fa-cart-check");
             } else {
-                icon.classList.remove("fa-check");
-                icon.classList.add("fa-plus");
+                icon.classList.remove("fa-cart-check");
+                icon.classList.add("fa-cart-plus");
             }
         }
         setTimeout(() => {
             document.querySelectorAll('.flash-msg').forEach(el => el.style.display = 'none');
         }, 3000);
-
     </script>
 </body>
 
