@@ -23,13 +23,18 @@ app.set("view engine","ejs");
 
 app.use(session({
   secret: 'shyneSecret', // use a strong secret
-  resave: false,
-  saveUninitialized: false
+  resave: true,
+  saveUninitialized: true,
+  cookie: { secure: false }
 }));
 app.use(flash());
 
 app.use((req, res, next) => {
-  res.locals.messages = req.flash();
+  res.locals.messages = {
+    error: req.flash('error'),
+    success: req.flash('success'),
+    info: req.flash('info')
+  };
   next();
 });
 

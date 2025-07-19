@@ -10,12 +10,19 @@ const userRegister = async (req, res) => {
 
         let user = await userModel.find({ email:email});
         if(user.length > 0){
-            return res.status(400).send("you already have an account please login");
+            req.flash('error', 'You already have an account, please login');
+            return res.redirect('/');
         }
         bcrypt.genSalt(10, async (err, salt) =>{
-            if (err) return res.send(err.message);
+            if (err) {
+                req.flash('error', err.message);
+                return res.redirect('/');
+            }
             bcrypt.hash(password, salt,async (err, hash) => {
-                if(err) console.log(err.message);
+                if(err) {
+                    req.flash('error', err.message);
+                    return res.redirect('/');
+                }
                 const createdUser = await userModel.create({
                     fullname,
                     email,
@@ -23,30 +30,45 @@ const userRegister = async (req, res) => {
                 });
                 const token =  await generateToken(createdUser);
                 res.cookie("token",token);
+                req.flash('success', 'Registration successful!');
                 return res.redirect(`/shop/${createdUser._id}`);
             });
         });
     }
     catch(err){
-        res.send(err.message);
+        req.flash('error', err.message);
+        res.redirect('/');
     }
 }
 
 const userLogin = async (req, res) => {
-    let {email, password} = req.body;
-    let user = await userModel.findOne({email: email});
-    if(!user){
-        return res.status(400).send("user not found, please resigter");
-    }
-    await bcrypt.compare(password, user.password, async (err, result) => {
-        
-        if(err) return res.status(400).send('email or password incorrect');
-        if(result){
-            const token = generateToken(user);
-            res.cookie("token",token);
-            return res.redirect(`/shop/${user._id}`);
+    try {
+        let {email, password} = req.body;
+        let user = await userModel.findOne({email: email});
+        if(!user){
+            req.flash('error', 'User not found, please register');
+            return res.redirect('/users/login');
         }
-    });
+        await bcrypt.compare(password, user.password, async (err, result) => {
+            
+            if(err) {
+                req.flash('error', 'Email or password incorrect');
+                return res.redirect('/users/login');
+            }
+            if(result){
+                const token = generateToken(user);
+                res.cookie("token",token);
+                req.flash('success', 'Login successful!');
+                return res.redirect(`/shop/${user._id}`);
+            } else {
+                req.flash('error', 'Email or password incorrect');
+                return res.redirect('/users/login');
+            }
+        });
+    } catch(err) {
+        req.flash('error', 'Login failed: ' + err.message);
+        res.redirect('/users/login');
+    }
 }
 
 module.exports = {

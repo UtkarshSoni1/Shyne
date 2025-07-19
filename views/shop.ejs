@@ -24,28 +24,60 @@
         .hide-scrollbar::-webkit-scrollbar {
             display: none;
         }
+
+        /* .flash-msg {
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-50%) translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(-50%) translateY(-50%);
+                opacity: 1;
+            }
+        }
+
+        .flash-msg.fade-out {
+            animation: fadeOut 0.5s ease-in forwards;
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        } */
     </style>
 
 </head>
 
 <body class="bg-[#F9FAFB]">
-    <% if (Array.isArray(success) && success.length > 0) { %>
-        <% success.forEach(function(msg) { %>
-            <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-green-200 text-green-800 p-2 rounded flash-msg">
-                <span class="inline-block mt-1 mb-1 ">
-                    <%= msg %>
-                </span>
-            </div>
-        <% }) %>
+    <!-- Flash Messages -->
+    <% if (messages && messages.error) { %>
+        <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-red-500 text-white p-3 rounded-lg shadow-lg z-50 flash-msg">
+            <span class="inline-block">
+                <%= messages.error %>
+            </span>
+        </div>
     <% } %>
-    <% if (Array.isArray(info) && info.length > 0) { %>
-        <% info.forEach(function(msg) { %>
-            <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-200 text-blue-800 p-2 rounded flash-msg">
-                <span class="inline-block mt-1 mb-1 ">
-                    <%= msg %>
-                </span>
-            </div>
-        <% }) %>
+    <% if (messages && messages.success) { %>
+        <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-green-500 text-white p-3 rounded-lg shadow-lg z-50 flash-msg">
+            <span class="inline-block">
+                <%= messages.success %>
+            </span>
+        </div>
+    <% } %>
+    <% if (messages && messages.info) { %>
+        <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-500 text-white p-3 rounded-lg shadow-lg z-50 flash-msg">
+            <span class="inline-block">
+                <%= messages.info %>
+            </span>
+        </div>
     <% } %>
     
     <div id="main" class="h-full w-full hide-scrollbar scrollbar-hide overflow-y-scroll">
@@ -231,20 +263,23 @@
     </footer>
     </div>
     <script>
-        // Update cart icon to show a checkmark when added to cart, revert to cart-plus otherwise
+        // Auto-hide flash messages after 3 seconds
+        document.addEventListener('DOMContentLoaded', function() {
+            const flashMessages = document.querySelectorAll('.flash-msg');
+            flashMessages.forEach(function(msg) {
+                setTimeout(function() {
+                    msg.classList.add('fade-out');
+                    setTimeout(function() {
+                        msg.remove();
+                    }, 500);
+                }, 3000);
+            });
+        });
+
         function toggleIcon(button) {
-            const icon = button.querySelector("i");
-            if (icon.classList.contains("fa-cart-plus")) {
-                icon.classList.remove("fa-cart-plus");
-                icon.classList.add("fa-cart-check");
-            } else {
-                icon.classList.remove("fa-cart-check");
-                icon.classList.add("fa-cart-plus");
-            }
+            // Add any additional functionality for the cart button
+            console.log('Cart button clicked');
         }
-        setTimeout(() => {
-            document.querySelectorAll('.flash-msg').forEach(el => el.style.display = 'none');
-        }, 3000);
     </script>
 </body>
 

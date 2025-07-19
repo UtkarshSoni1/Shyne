@@ -20,12 +20,19 @@ router.get('/',(req, res) => {
 router.post('/register',userRegister);
 
 router.get('/login',(req, res) => {
-    try{res.render('login');}
+    try{
+        res.render('login');
+    }
     catch(err){
-        res.send(err.message);
+        req.flash('error', err.message);
+        res.redirect('/');
     }
 });
 router.post('/login', userLogin);
+router.get('/logout', (req, res) => {
+    res.cookie("token","");
+    res.redirect('/users/login');
+})
 
 router.get('/cart/:id',async (req, res) => {
     try{
@@ -33,17 +40,16 @@ router.get('/cart/:id',async (req, res) => {
         res.render('cart',{user});
     }
     catch(err){
-        res.send(err.message);
+        req.flash('error', err.message);
+        res.redirect('/');
     }
 });
 router.get('/cart/orders/:id',async (req, res) => {
-    try{
-        let user = await userModel.findOne({ _id: req.body.id }).populate('cart');
-        res.render('order',{user});
-    }
-    catch(err){
-        res.send(err.message);
-    }
+    
+        let user = await userModel.findOne({ _id: req.params.id }).populate('cart');
+        res.render('orderAll',{user});
+    
+    
 });
 router.get('/orders/:id',isLoggedIn,async (req, res) => {
     try{
@@ -52,7 +58,8 @@ router.get('/orders/:id',isLoggedIn,async (req, res) => {
         res.render('order',{user,product});
     }
     catch(err){
-        res.send(err.message);
+        req.flash('error', err.message);
+        res.redirect('/');
     }
 });
 router.post('/address/:id',async (req, res) => {
@@ -79,7 +86,59 @@ router.get('/account/:id',isLoggedIn,(req, res) => {
         res.render('account',{user});
     }
     catch(err){
-        res.send(err.message);
+        req.flash('error', err.message);
+        res.redirect('/');
+    }
+});
+
+// Update user name
+router.put('/update/name/:id', isLoggedIn, async (req, res) => {
+    try {
+        const { name } = req.body;
+        const updatedUser = await userModel.findByIdAndUpdate(
+            req.params.id, 
+            { fullname: name }, 
+            { new: true }
+        );
+        req.flash('success', 'Name updated successfully!');
+        res.redirect(`/users/account/${req.params.id}`);
+    } catch(err) {
+        req.flash('error', 'Failed to update name: ' + err.message);
+        res.redirect(`/users/account/${req.params.id}`);
+    }
+});
+
+// Update user email
+router.put('/update/email/:id', isLoggedIn, async (req, res) => {
+    try {
+        const { email } = req.body;
+        const updatedUser = await userModel.findByIdAndUpdate(
+            req.params.id, 
+            { email: email }, 
+            { new: true }
+        );
+        req.flash('success', 'Email updated successfully!');
+        res.redirect(`/users/account/${req.params.id}`);
+    } catch(err) {
+        req.flash('error', 'Failed to update email: ' + err.message);
+        res.redirect(`/users/account/${req.params.id}`);
+    }
+});
+
+// Update user mobile
+router.put('/update/mobile/:id', isLoggedIn, async (req, res) => {
+    try {
+        const { mobile } = req.body;
+        const updatedUser = await userModel.findByIdAndUpdate(
+            req.params.id, 
+            { mobile: mobile }, 
+            { new: true }
+        );
+        req.flash('success', 'Mobile number updated successfully!');
+        res.redirect(`/users/account/${req.params.id}`);
+    } catch(err) {
+        req.flash('error', 'Failed to update mobile: ' + err.message);
+        res.redirect(`/users/account/${req.params.id}`);
     }
 });
 

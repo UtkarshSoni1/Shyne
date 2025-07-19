@@ -26,6 +26,29 @@
     </style>
 </head>
 <body class="">
+    <!-- Flash Messages -->
+    <% if (messages && messages.error) { %>
+        <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-red-500 text-white p-3 rounded-lg shadow-lg z-50 flash-msg">
+            <span class="inline-block">
+                <%= messages.error %>
+            </span>
+        </div>
+    <% } %>
+    <% if (messages && messages.success) { %>
+        <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-green-500 text-white p-3 rounded-lg shadow-lg z-50 flash-msg">
+            <span class="inline-block">
+                <%= messages.success %>
+            </span>
+        </div>
+    <% } %>
+    <% if (messages && messages.info) { %>
+        <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-500 text-white p-3 rounded-lg shadow-lg z-50 flash-msg">
+            <span class="inline-block">
+                <%= messages.info %>
+            </span>
+        </div>
+    <% } %>
+    
     <div class="h-[100px] w-full sticky top-0 bg-white z-50 peer-checked:bg-black">
         <div id="topsec" class="h-full w-full text-[#34664f]">
             <div class="w-full h-[100px] flex items-center justify-between  border-b-2 border-black ">
@@ -37,7 +60,7 @@
                     <a href="/shop/<%= user.id %>" class="hover:text-[#f1a155]" >
                         <i class="fa-solid fa-house"></i>
                     </a>
-                    <a href="/user/account/" class="hover:text-[#f1a155]">
+                    <a href="/users/account/<%= user.id %>" class="hover:text-[#f1a155]">
                         <i class="fa-solid fa-user"></i>
                     </a>
                 </div>
@@ -130,7 +153,7 @@
                         Total Amount                    
                     </p>
                     <p class="text-white font-semibold text-2xl ml-5">
-                        <%= totalAmt %>                    
+                        ₹<%= totalAmt %>                    
                     </p>
                 </div>
                 <div>
@@ -138,7 +161,7 @@
                         You Saved!!                    
                     </p>
                     <p class="text-white font-semibold text-2xl ml-5">
-                        <%= totalDisc %>                    
+                        ₹<%= totalDisc %>                    
                     </p>
                 </div>
                 <div>
@@ -146,12 +169,20 @@
                         Shipping                    
                     </p>
                     <p class="text-white font-semibold text-2xl ml-5">
-                        <%= totalShip %>                    
+                        ₹<%= totalShip %>                    
                     </p>
                 </div>
-                <button class="h-2/3 w-60 bg-white rounded-4xl text-[#f1a155] text-xl font-semibold mr-5">
-                    <a href="">Place Order</a>
-                </button>
+                <% if(user.cart.length > 0) { %>
+                <div class="flex gap-4 h-12 ">
+                    <a href="/users/cart/orders/<%= user._id %>" class="h-full w-60 bg-[#F1A155] rounded-4xl text-white text-xl font-semibold mr-5 flex items-center justify-center">
+                        Continue
+                    </a>
+                </div>
+                <!-- <a href="/dummy-payment/<%= user._id %>" class="h-full w-60 bg-[] rounded-4xl text-white text-xl font-semibold mr-5 flex items-center justify-center">
+                    <i class="fas fa-credit-card mr-2"></i>
+                    Pay Now
+                </a> -->
+                <% } %>
             </div>
         </div>
     </div>
