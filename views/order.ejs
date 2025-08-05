@@ -1,9 +1,10 @@
+<%# Start of Selection %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Order</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="stylesheet" href="/stylesheets/styles.css">
     <style>
@@ -14,170 +15,157 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
-
         .hide-scrollbar {
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
-
         .hide-scrollbar::-webkit-scrollbar {
             display: none;
         }
     </style>
 </head>
 <body class="">
+    <!-- Header -->
     <div class="h-[100px] w-full sticky top-0 bg-white z-50 peer-checked:bg-black">
         <div id="topsec" class="h-full w-full text-[#34664f]">
-            <div class="w-full h-[100px] flex items-center justify-between  border-b-2 border-black ">
-                <div class="w-1/3 h-full pl-10 flex justify-start items-center">
-                    <h1 class="text-5xl pl-10">Order</h1>
-                </div>
-                <div class="w-1/3 h-full pr-10 flex justify-end gap-10 items-center text-3xl">
-                    
-                    <a href="/shop/<%= user.id %>" class="hover:text-[#f1a155]" >
-                        <i class="fa-solid fa-house"></i>
-                    </a>
-                    <a href="/user/account/" class="hover:text-[#f1a155]">
-                        <i class="fa-solid fa-user"></i>
-                    </a>
+            <div class="w-full h-sm:h-28 flex items-center justify-between border-b-2 border-black px-4 sm:px-10">
+                <!-- Title and icons in a single row, centered vertically -->
+                <div class="flex items-center justify-between w-full">
+                    <h1 class="text-2xl sm:text-5xl font-semibold pl-2 sm:pl-10">Order</h1>
+                    <div class="flex items-center gap-6 sm:gap-10 text-2xl sm:text-3xl pr-2 sm:pr-0">
+                        <a href="/shop/<%= user.id %>" class="hover:text-[#f1a155]">
+                            <i class="fa-solid fa-house"></i>
+                        </a>
+                        <a href="/user/account/" class="hover:text-[#f1a155]">
+                            <i class="fa-solid fa-user"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div id="main" class="h-[100vh] w-full p-3 overflow-y-auto flex flex-col gap-5 hide-scrollbar scroll-smooth mt-5">
+    <!-- Main Content -->
+    <div id="main" class="min-h-[100vh] w-full p-2 sm:p-3 overflow-y-auto flex flex-col gap-5 hide-scrollbar scroll-smooth mt-2 sm:mt-5">
         <% if (!user.address || !user.pincode) { %>
-        <div id="addressDiv" class="h-56 w-1/3 border-2 border-black">
-            <p class="text-2xl font-semibold text-center text-white bg-[#34664f]">Enter your Details</p>
-            <form id="addressForm" action="/users/address/<%= user.id %>" method="post" class="flex flex-col gap-5 pl-5 ">
-                <input type="text" placeholder="enter your Address" name="address" class="h-10 w-[90%] outline-none pl-3 border-2 border-black mt-2 rounded-3xl" required>
-                <input type="text" placeholder="enter your pin code" name="pincode" class="h-10 w-[40%] outline-none pl-3 border-2 border-black rounded-3xl" required>
-                <input type="submit" value="Save" class="h-10 w-[50%] text-white text-xl font-semibold outline-none border-2 border-black mb-2 bg-[#f1a155] rounded-3xl">
+        <div id="addressDiv" class="border-2 border-black rounded-lg w-full sm:w-1/3 bg-white ml-0 sm:ml-0 sm:mr-auto">
+            <p class="text-xl sm:text-2xl font-semibold text-left text-white bg-[#34664f] py-2 rounded-t-lg pl-4">Enter your Details</p>
+            <form id="addressForm" action="/users/address/<%= user.id %>" method="post" class="flex flex-col gap-4 px-4 py-4">
+                <input type="text" placeholder="enter your Address" name="address" class="h-10 w-full outline-none pl-3 border-2 border-black mt-2 rounded-3xl" required>
+                <input type="text" placeholder="enter your pin code" name="pincode" class="h-10 w-2/3 sm:w-1/2 outline-none pl-3 border-2 border-black rounded-3xl" required>
+                <input type="submit" value="Save" class="h-10 w-2/3 sm:w-1/2 text-white text-lg sm:text-xl font-semibold outline-none border-2 border-black mb-2 bg-[#f1a155] rounded-3xl ml-0 sm:ml-0">
             </form>
         </div>
-        <% }else{ %>
-            <div id="addressDiv" class="h-28 w-1/3 bg-[#f1f3f6] pl-3">
-                <p class="text-2xl font-semibold text-zinc-600">Delivery Address <i class="fa-solid fa-check text-blue-500"></i></p>                      
-                <p class="text-xl"><b class="font-semibold"><%= user.fullname %></b>, <%= user.address %></p>
-                <p class="text-xl">pincode :<%= user.pincode %></p>
-            </div>
-            <% } %>
-        <div class="h-[65%] w-full flex bg-[#f1f3f6]  flex-col gap-5">
+        <% } else { %>
+        <div id="addressDiv" class="w-full sm:w-1/3 bg-[#f1f3f6] pl-3 py-3 rounded-lg ml-0 sm:ml-0 sm:mr-auto">
+            <p class="text-xl sm:text-2xl font-semibold text-zinc-600 text-left">Delivery Address <i class="fa-solid fa-check text-blue-500"></i></p>                      
+            <p class="text-lg sm:text-xl text-left"><b class="font-semibold"><%= user.fullname %></b>, <%= user.address %></p>
+            <p class="text-lg sm:text-xl text-left">pincode :<%= user.pincode %></p>
+        </div>
+        <% } %>
 
+        <!-- Responsive layout: for big screens, use two columns as before -->
+        <div class="w-full flex flex-col sm:flex-row gap-5 bg-[#f1f3f6] rounded-lg p-2 sm:p-4">
             <% let totalAmt = 0 %>
             <% let totalDisc = 0 %>
             <% let totalShip = 0 %>
-            <p class="text-2xl h-10 w-full pl-3  bg-blue-400 text-white">Order Summary</p>
-            <% if(product){ %>
-            <div class="h-96 w-full flex items-center gap-5 item shrink-0 z-10 mx-3" >
-                
-                <div id="left-sec" class="h-full w-[27%] rounded-md overflow-hidden">
-                    <div class="h-[70%] w-full  flex items-center justify-center" style="background-color: #<%= product.bgcolor %>;">
-                        <img src="/uploads/<%= product.image %>" alt="" class="h-[80%] w-[80%] object-contain  overflow-hidden">
-                    </div>
-                    <div class="h-[17%] w-full flex items-center gap-30" style="background-color: #<%= product.panelcolor %>;">
-                        <div class="h-full w-[40%] text-2xl flex items-center pl-8">
-                            <h1 class=""><%= product.name %></h1>
+            <!-- Left: Product summary -->
+            <div class="w-full sm:w-2/3 flex flex-col gap-5">
+                <p class="text-xl sm:text-2xl h-10 w-full pl-2 sm:pl-3 bg-blue-400 text-white rounded-t-lg flex items-center">Order Summary</p>
+                <% if(product){ %>
+                <div class="w-full flex flex-col sm:flex-row items-center gap-4 sm:gap-5 item shrink-0 z-10 mx-0 sm:mx-3">
+                    <!-- Left Section -->
+                    <div id="left-sec" class="w-full sm:w-[40%] rounded-md overflow-hidden bg-white shadow-sm mb-2 sm:mb-0">
+                        <div class="h-40 sm:h-[70%] w-full flex items-center justify-center" style="background-color: #<%= product.bgcolor %>;">
+                            <img src="/uploads/<%= product.image %>" alt="" class="h-[80%] w-[80%] object-contain overflow-hidden">
                         </div>
-                        <div class="h-full w-[30%] flex items-center justify-center gap-2 text-black">
-                            <button>
-                                <div class="h-6 w-6 rounded-full bg-white flex justify-center items-center ">
-                                    <h1 class="text-xl font-bold leading-none pb-1">+</h1>
-                                </div>
-                            </button>
-                            <div class="h-6 w-8 bg-white text-center text-xl relative  pb-[2px]">
-                                <h1 class="leading-none p-[1px]">01</h1>
+                        <div class="h-14 sm:h-[17%] w-full flex flex-col sm:flex-row items-center gap-2 sm:gap-8 px-4 py-2" style="background-color: #<%= product.panelcolor %>;">
+                            <div class="w-full sm:w-[40%] text-lg sm:text-2xl flex items-center justify-center sm:pl-8">
+                                <h1 class="truncate"><%= product.name %></h1>
                             </div>
-                            <button>
-                                <div class="h-6 w-6 rounded-full bg-white flex justify-center items-center ">
-                                    <h1 class="text-xl font-bold leading-none pb-1">-</h1>
+                            <div class="w-full  items-center justify-center gap-2 text-black mt-2  hidden
+                            sm:w-[30%] sm:flex sm:mt-0">
+                                <button>
+                                    <div class="h-6 w-6 rounded-full bg-white flex justify-center items-center ">
+                                        <h1 class="text-lg sm:text-xl font-bold leading-none pb-1">+</h1>
+                                    </div>
+                                </button>
+                                <div class="h-6 w-8 bg-white text-center text-lg sm:text-xl relative pb-[2px]">
+                                    <h1 class="leading-none p-[1px]">01</h1>
                                 </div>
-                            </button>
+                                <button>
+                                    <div class="h-6 w-6 rounded-full bg-white flex justify-center items-center ">
+                                        <h1 class="text-lg sm:text-xl font-bold leading-none pb-1">-</h1>
+                                    </div>
+                                </button>
+                            </div>
                         </div>
+                        <div class="h-12 sm:h-[13%] w-full flex justify-between text-white items-center px-4 text-lg sm:text-xl" style="background-color: #<%= product.textcolor %>;">
+                            <p> Net Total </p>
+                            <p>₹<%= product.price + 20 - product.discount %></p>
+                        </div>               
                     </div>
-                    <div class="h-[13%] w-full  flex justify-between text-white items-center pl-8 pr-26 text-xl" style="background-color: #<%= product.textcolor %>;">
-                        <p> Net Total </p>
-                        <p>₹<%= product.price + 20 - product.discount %></p>
-                    </div>               
+                    <!-- Right Section: Price breakdown -->
+                    <div id="right-sec" class="w-full sm:w-[60%] flex flex-col">
+                        <p class="text-xl sm:text-2xl font-semibold pl-2">Price breakdown</p>
+                        <div class="w-full flex flex-row gap-4 sm:gap-6 mt-4 sm:mt-7">
+                            <div class="w-1/2 sm:w-[30%] flex flex-col gap-2 ml-2 sm:ml-5">
+                                <p class="text-base sm:text-lg font-semibold">Total MRP</p>
+                                <p class="text-base sm:text-lg font-semibold">Discount on MRP</p>
+                                <p class="text-base sm:text-lg font-semibold">Platform Fee</p>
+                                <p class="text-base sm:text-lg font-semibold">Shipping Fee</p>
+                            </div>
+                            <div class="w-1/2 sm:w-[30%] flex flex-col gap-2">
+                                <p class="text-base sm:text-lg font-semibold">₹<%= product.price %></p>
+                                <p class="text-base sm:text-lg ">₹<%= product.discount %></p>
+                                <p class="text-base sm:text-lg ">₹20</p>
+                                <p class="text-base sm:text-lg font-semibold"><% let Ship = 0 %>FREE</p>
+                            </div>
+                        </div>
+                        <div class="h-[2px] w-full bg-zinc-300 my-2"></div>
+                        <div class="w-full flex items-start justify-between pl-2 sm:pl-5 pr-8 sm:pr-[56%] pt-2 sm:pt-5">
+                            <p class="text-lg sm:text-xl font-semibold">Total Amount</p>
+                            <p class="text-lg sm:text-xl text-green-400 font-semibold">₹<% let total =  product.price + 20 - product.discount %><%= total %></p>
+                        </div>
+                        <% totalAmt += total %>
+                        <% totalDisc += product.discount %>
+                        <% totalShip += Ship %>
+                    </div>
                 </div>
-                <div id="right-sec" class="h-full w-1/2 ">
-                    <p class="text-2xl font-semibold pl-2">Price breakdown</p>
-                    <div class="h-[45%] w-full flex items-center gap-6 mt-7">
-                        <div class="h-full w-[30%] flex flex-col gap-2 ml-5">
-                            <p class="text-lg font-semibold">Total MRP</p>
-                            <p class="text-lg font-semibold">Discount on MRP</p>
-                            <p class="text-lg font-semibold">Platform Fee</p>
-                            <p class="text-lg font-semibold">Shipping Fee</p>
-                        </div>
-                        <div class="h-full w-[30%] flex flex-col gap-2">
-                            <p class="text-lg font-semibold">₹<%= product.price %></p>
-                            <p class="text-lg ">₹<%= product.discount %></p>
-                            <p class="text-lg ">₹20</p>
-                            <p class="text-lg font-semibold"><% let Ship = 0 %>FREE</p>
-                        </div>
-                    </div>
-                    <div class="h-[2px] w-full bg-zinc-300"></div>
-                    <div class="h-[20%] w-full flex items-start justify-between pl-5 pr-[56%] pt-5">
-                        <p class="text-xl font-semibold">Total Amount</p>
-                        <p class="text-xl text-green-400 font-semibold">₹<% let total =  product.price + 20 - product.discount %><%= total %></p>
-                    </div>
-                    <!-- <div class="w-full flex items-center gap-10">
-                        <div class="h-10 w-36 bg-black rounded-md ml-5 flex justify-center items-center text-xl text-white">
-                            <button>
-                                <a href="/users/orders/<%= product.id %>">Order Now</a>
-                            </button>
-                        </div>
-                        <div class="h-10 w-36 bg-red-500 rounded-md ml-5 flex justify-center items-center text-xl text-white">
-                            <button>
-                                <a href="/removefromcart/<%= product.id %>">Remove Item</a>
-                            </button>
-                        </div>
-                    </div> -->
-                    <% totalAmt += total %>
-                    <% totalDisc += product.discount %>
-                    <% totalShip += Ship %>
-                </div>
-            </div>
-            <% } else{ %>
-                <h1>NO Products in cart</h1>
+                <% } else { %>
+                    <h1 class="text-center text-lg sm:text-2xl font-semibold py-8">NO Products in cart</h1>
                 <% } %>
             </div>
-            <div class="h-20 w-full flex justify-between items-center bg-[#f1f3f6] pl-3">
-                <p class="text-2xl ">order confirmation email will be sent to: <%= user.email %></p>
-                <button class="h-12 w-40 bg-[#f1a155] text-2xl text-white font-semibold mr-3 rounded-md">
-                    <a href="/dummy-payment-single/<%= product.id %>">Continue</a>
-                </button>
-            </div>
-        <!-- <div class="h-20 w-full flex justify-center">
-            <div class="h-16 w-[80%] bg-[#356650] rounded-4xl flex justify-between items-center">
-                <div>
-                    <p class="text-white font-semibold text-2xl ml-5">
-                        Total Amount                    
-                    </p>
-                    <p class="text-white font-semibold text-2xl ml-5">
-                        <%= totalAmt %>                    
-                    </p>
+            <!-- Right: Big screen summary bar (as before) -->
+            <!-- <div class="hidden sm:flex flex-col w-full sm:w-1/3">
+                <div class="w-full bg-[#356650] rounded-4xl flex flex-col justify-between items-center py-4 h-full">
+                    <div class="flex flex-col items-start justify-center w-full px-8 mb-4">
+                        <p class="text-white font-semibold text-2xl ml-0">Total Amount</p>
+                        <p class="text-white font-semibold text-2xl ml-0">₹<%= totalAmt %></p>
+                    </div>
+                    <div class="flex flex-col items-start justify-center w-full px-8 mb-4">
+                        <p class="text-white font-semibold text-2xl ml-0">You Saved!!</p>
+                        <p class="text-white font-semibold text-2xl ml-0">₹<%= totalDisc %></p>
+                    </div>
+                    <div class="flex flex-col items-start justify-center w-full px-8 mb-4">
+                        <p class="text-white font-semibold text-2xl ml-0">Shipping</p>
+                        <p class="text-white font-semibold text-2xl ml-0">₹<%= totalShip %></p>
+                    </div>
+                    <button class="h-12 w-60 bg-white rounded-4xl text-[#f1a155] text-xl font-semibold mr-0">
+                        <a href="/dummy-payment-single/<%= product ? product.id : '' %>">Place Order</a>
+                    </button>
                 </div>
-                <div>
-                    <p class="text-white font-semibold text-2xl ml-5">
-                        You Saved!!                    
-                    </p>
-                    <p class="text-white font-semibold text-2xl ml-5">
-                        <%= totalDisc %>                    
-                    </p>
-                </div>
-                <div>
-                    <p class="text-white font-semibold text-2xl ml-5">
-                        Shipping                    
-                    </p>
-                    <p class="text-white font-semibold text-2xl ml-5">
-                        <%= totalShip %>                    
-                    </p>
-                </div>
-                <button class="h-2/3 w-60 bg-white rounded-4xl text-[#f1a155] text-xl font-semibold mr-5">
-                    <a href="">Place Order</a>
-                </button>
-            </div>
-        </div> -->
+            </div> -->
+        </div>
+        <!-- Mobile summary and continue button -->
+        <div class="h-16 w-full
+        sm:h-20 sm:w-full flex flex-row gap-5 items-center bg-[#f1f3f6] pl-2 rounded-b-lg mt-2">
+            <p class="text-base text-center
+            sm:text-xl">order confirmation email will be sent to: <%= user.email %></p>
+            <button class="h-10 w-32 bg-[#f1a155] text-lg text-white font-semibold mt-2 rounded-md
+            sm:h-12 sm:w-40 sm:text-xl  ">
+                <a href="/dummy-payment-single/<%= product ? product.id : '' %>">Continue</a>
+            </button>
+        </div>
     </div>
 </body>
 </html>

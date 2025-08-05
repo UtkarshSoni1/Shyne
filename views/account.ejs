@@ -1,4 +1,3 @@
-<%# Start of Selection %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,14 +7,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="stylesheet" href="/stylesheets/styles.css">
 </head>
-<body class="h-screen w-screen bg-[#f0f2f5] m-0 p-0">
+<body class="min-h-screen w-screen bg-[#f0f2f5] m-0 p-0">
+    <!-- Top Bar -->
     <div class="h-[70px] w-full sticky top-0 bg-white z-50">
         <div id="topsec" class="h-full w-full text-[#34664f] bg-[#f0f2f5]">
-            <div class="w-full h-[70px] flex items-center justify-between border-b-2 border-black">
-                <div class="w-1/3 h-full pl-10 flex justify-start items-center">
-                    <h1 class="text-5xl pl-10">Cart</h1>
+            <div class="w-full h-[70px] flex items-center justify-between border-b-2 border-black px-4 sm:px-10">
+                <div class="w-1/3 h-full flex justify-start items-center pl-0 sm:pl-10">
+                    <h1 class="text-2xl sm:text-5xl pl-2 sm:pl-10">Cart</h1>
                 </div>
-                <div class="w-1/3 h-full pr-10 flex justify-end gap-10 items-center text-3xl">
+                <div class="w-1/3 h-full flex justify-end gap-5 sm:gap-10 items-center text-2xl sm:text-3xl pr-0 sm:pr-10">
                     <a href="/shop/<%= user.id %>" class="hover:text-[#f1a155]">
                         <i class="fa-solid fa-house"></i>
                     </a>
@@ -26,218 +26,223 @@
             </div>
         </div>
     </div>
-    <div id="mainP" class="h-[calc(100vh-70px)] w-full bg-[#f0f2f5] px-20 overflow-y-auto">
-    <div id="main" class="flex h-[calc(100vh-70px)] w-full bg-[#f0f2f5] px-20">
-        <div id="leftside" class="flex flex-col items-center h-full w-[23%] bg-[#f0f2f5]">
-            <div id="user" class="min-h-15 w-4/5 bg-white flex items-center gap-3 pl-3 mt-3">
-                <div class="h-12 w-12 flex items-center">
-                    <div class="rounded-full overflow-hidden w-12 h-12">
-                        <img src="/images/image.png" class="object-cover w-12 h-12 rounded-full">
+    <!-- Main Content -->
+    <div id="mainP" class="min-h-[calc(100vh-70px)] w-full bg-[#f0f2f5] px-2 sm:px-20 overflow-y-auto">
+        <div id="main" class="flex flex-col lg:flex-row min-h-[calc(100vh-70px)] w-full bg-[#f0f2f5] px-0 sm:px-20">
+            <!-- Left Sidebar -->
+            <div id="leftside" class="flex flex-col items-center w-full lg:w-[23%] bg-[#f0f2f5]">
+                <div id="user" class="min-h-15 w-full sm:w-4/5 bg-white flex items-center gap-3 pl-3 mt-3">
+                    <div class="h-12 w-12 flex items-center">
+                        <div class="rounded-full overflow-hidden w-12 h-12">
+                            <img src="/images/image.png" class="object-cover w-12 h-12 rounded-full">
+                        </div>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-lg sm:text-xl">Hello</span>
+                        <span class="text-base sm:text-lg font-semibold"><%= user.fullname %></span>
                     </div>
                 </div>
-                <div class="flex flex-col">
-                    <span class="text-xl">Hello</span>
-                    <span class="text-lg font-semibold"><%= user.fullname %></span>
-                </div>
-            </div>
-            <div id="menu" class="flex flex-col flex-1 w-4/5 bg-white mt-5 ">
-                <div id="myorders" class="w-full pt-3 min-h-15 flex items-center border-b-2 border-[#f0f2f5] px-4">
-                    <span>
-                        <a href="/users/orders/<%= user.id %>" class="text-2xl font-semibold">
-                            <i class="fa-solid fa-box text-2xl text-blue-400 mr-3"></i>
-                            My orders
-                        </a>
-                    </span>
-                </div>
-                <div id="setting" class="w-full mt-3 min-h-50 flex flex-col items-start border-b-2 border-[#f0f2f5] px-4">
-                    <span class="text-2xl font-semibold">
-                        <i class="fa-solid fa-user text-2xl text-blue-400 mr-3"></i>
-                        Settings
-                    </span>
-                    <div class="h-12 w-full text-lg hover:text-blue-400 focus:text-blue-400 hover:bg-[#f5faff] mt-3">
-                        <a href="">
-                            Profile Information
-                        </a>
+                <div id="menu" class="flex flex-col flex-1 w-full sm:w-4/5 bg-white mt-5">
+                    <div id="myorders" class="w-full pt-3 min-h-15 flex items-center border-b-2 border-[#f0f2f5] px-2 sm:px-4">
+                        <span>
+                            <a href="/users/orders/<%= user.id %>" class="text-lg sm:text-2xl font-semibold flex items-center">
+                                <i class="fa-solid fa-box text-lg sm:text-2xl text-blue-400 mr-2 sm:mr-3"></i>
+                                My orders
+                            </a>
+                        </span>
                     </div>
-                    <div class="h-12 w-full text-lg hover:text-blue-400 focus:text-blue-400 hover:bg-[#f5faff] mt-1">
-                        <a href="">
-                            Manage Address 
-                        </a>
+                    <div id="setting" class="w-full mt-3 min-h-50 flex flex-col items-start border-b-2 border-[#f0f2f5] px-2 sm:px-4">
+                        <span class="text-lg sm:text-2xl font-semibold flex items-center">
+                            <i class="fa-solid fa-user text-lg sm:text-2xl text-blue-400 mr-2 sm:mr-3"></i>
+                            Settings
+                        </span>
+                        <div class="h-12 w-full text-base sm:text-lg hover:text-blue-400 focus:text-blue-400 hover:bg-[#f5faff] mt-3">
+                            <a href="">
+                                Profile Information
+                            </a>
+                        </div>
+                        <div class="h-12 w-full text-base sm:text-lg hover:text-blue-400 focus:text-blue-400 hover:bg-[#f5faff] mt-1">
+                            <a href="">
+                                Manage Address 
+                            </a>
+                        </div>
+                        <div class="h-12 w-full text-base sm:text-lg hover:text-blue-400 focus:text-blue-400 hover:bg-[#f5faff] mt-1">
+                            <a href="">
+                                Pan Card Details
+                            </a>
+                        </div>
                     </div>
-                    <div class="h-12 w-full text-lg hover:text-blue-400 focus:text-blue-400 hover:bg-[#f5faff] mt-1">
-                        <a href="">
-                            Pan Card Details
-                        </a>
+                    <div id="payments" class="w-full mt-3 min-h-50 flex flex-col items-start border-b-2 border-[#f0f2f5] px-2 sm:px-4">
+                        <span class="text-lg sm:text-2xl font-semibold flex items-center">
+                            <i class="fa-solid fa-credit-card text-lg sm:text-2xl text-blue-400 mr-2 sm:mr-3"></i>
+                            payments
+                        </span>
+                        <div class="h-12 w-full text-base sm:text-lg hover:text-blue-400 focus:text-blue-400 hover:bg-[#f5faff] mt-3">
+                            Gift cards
+                        </div>
+                        <div class="h-12 w-full text-base sm:text-lg hover:text-blue-400 focus:text-blue-400 hover:bg-[#f5faff] mt-1">
+                            Saved UPI
+                        </div>
+                        <div class="h-12 w-full text-base sm:text-lg hover:text-blue-400 focus:text-blue-400 hover:bg-[#f5faff] mt-1">
+                            Saved cards
+                        </div>
                     </div>
-                </div>
-                <div id="payments" class="w-full mt-3 min-h-50 flex flex-col items-start border-b-2 border-[#f0f2f5] px-4">
-                    <span class="text-2xl font-semibold">
-                        <i class="fa-solid fa-credit-card text-2xl text-blue-400 mr-3"></i>
-                        payments
-                    </span>
-                    <div class="h-12 w-full text-lg hover:text-blue-400 focus:text-blue-400 hover:bg-[#f5faff] mt-3">
-                        Gift cards
+                    <div id="mystuff" class="w-full mt-3 min-h-60 flex flex-col items-start border-b-2 border-[#f0f2f5] px-2 sm:px-4">
+                        <span class="text-lg sm:text-2xl font-semibold flex items-center">
+                            <i class="fa-solid fa-folder-closed text-blue-400 mr-2 sm:mr-3"></i>
+                            My Stuff
+                        </span>
+                        <div class="h-12 w-full text-base sm:text-lg hover:text-blue-400 focus:text-blue-400 hover:bg-[#f5faff] mt-3">
+                            My Coupons
+                        </div>
+                        <div class="h-12 w-full text-base sm:text-lg hover:text-blue-400 focus:text-blue-400 hover:bg-[#f5faff] mt-1">
+                            My Reviews and ratings
+                        </div>
+                        <div class="h-12 w-full text-base sm:text-lg hover:text-blue-400 focus:text-blue-400 hover:bg-[#f5faff] mt-1">
+                            All Notifications
+                        </div>
+                        <div class="h-12 w-full text-base sm:text-lg hover:text-blue-400 focus:text-blue-400 hover:bg-[#f5faff] mt-1">
+                            My Wishlist
+                        </div>
                     </div>
-                    <div class="h-12 w-full text-lg hover:text-blue-400 focus:text-blue-400 hover:bg-[#f5faff] mt-1">
-                        Saved UPI
+                    <div id="logout" class="w-full mt-3 min-h-10 flex items-center border-b-2 border-[#f0f2f5] px-2 sm:px-4 hover:bg-[#f5faff]">
+                        <svg width="24" height="24" class="mr-2 sm:mr-3" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#2874F0" stroke-width="0.3" stroke="#2874F0" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg>
+                        <span class="text-lg sm:text-2xl font-semibold ">
+                            <a href="/users/logout" class="hover:text-blue-400 ">
+                                Logout
+                            </a>
+                        </span>
                     </div>
-                    <div class="h-12 w-full text-lg hover:text-blue-400 focus:text-blue-400 hover:bg-[#f5faff] mt-1">
-                        Saved cards
-                    </div>
-                </div>
-                <div id="mystuff" class="w-full mt-3 min-h-60 flex flex-col items-start border-b-2 border-[#f0f2f5] px-4">
-                    <span class="text-2xl font-semibold">
-                        <i class="fa-solid fa-folder-closed text-blue-400 mr-3"></i>
-                        My Stuff
-                    </span>
-                    <div class="h-12 w-full text-lg hover:text-blue-400 focus:text-blue-400 hover:bg-[#f5faff] mt-3">
-                        My Coupons
-                    </div>
-                    <div class="h-12 w-full text-lg hover:text-blue-400 focus:text-blue-400 hover:bg-[#f5faff] mt-1">
-                        My Reviews and ratings
-                    </div>
-                    <div class="h-12 w-full text-lg hover:text-blue-400 focus:text-blue-400 hover:bg-[#f5faff] mt-1">
-                        All Notifications
-                    </div>
-                    <div class="h-12 w-full text-lg hover:text-blue-400 focus:text-blue-400 hover:bg-[#f5faff] mt-1">
-                        My Wishlist
-                    </div>
-                </div>
-                <div id="logout" class="w-full mt-3 min-h-10 flex items-center border-b-2 border-[#f0f2f5] px-4 hover:bg-[#f5faff]">
-                    <svg width="24" height="24" class="mr-3" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#2874F0" stroke-width="0.3" stroke="#2874F0" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg>
-                    <span class="text-2xl font-semibold ">
-                        <a href="/users/logout" class="hover:text-blue-400 ">
-                            Logout
-                        </a>
-                    </span>
-                </div>
-            </div>
-        </div>
-        <div id="rightside" class="h-screen w-[70%] bg-[#f0f2f5] mt-3">
-            <div id="rightsideM" class="h-[68rem] w-full bg-white flex flex-col">
-                <!-- Flash Messages -->
-                <!-- <% if (messages && messages.error) { %>
-                    <div class="w-full p-3 bg-red-500 text-white rounded-lg text-center m-2">
-                        <%= messages.error %>
-                    </div>
-                <% } %>
-                <% if (messages && messages.success) { %>
-                    <div class="w-full p-3 bg-green-500 text-white rounded-lg text-center m-2">
-                        <%= messages.success %>
-                    </div>
-                <% } %>
-                <% if (messages && messages.info) { %>
-                    <div class="w-full p-3 bg-blue-500 text-white rounded-lg text-center m-2">
-                        <%= messages.info %>
-                    </div>
-                <% } %> -->
-                
-                <div class="h-60 w-full  flex flex-col gap-5 pl-10 pt-5">
-                    <span class="text-2xl font-semibold flex gap-5 items-center">
-                        Personal Information
-                        <p class="text-blue-400 text-xl underline" id="edit1" onclick="toggleForm(1)">Edit</p>
-                    </span>
-                    <form action="/users/update/name/<%= user.id %>" method="post" class="flex flex-col gap-10">
-                        <input id="input1" type="text" name="name" value="<%= user.fullname %>" class="w-60 h-14 bg-zinc-50 outline-none pl-3 text-xl" disabled>
-                        <input id="sbtn1" type="submit" value="Save" class="w-30 h-12 bg-blue-400 text-xl text-white hidden outline-none px-4 py-2">
-                    </form>
-                </div>
-                <div class="h-60 w-full  flex flex-col gap-5 pl-10 pt-5">
-                    <span class="flex items-center gap-5">
-                        email Address
-                        <p class="text-blue-400 text-xl underline" id="edit2" onclick="toggleForm(2)">Edit</p>
-                    </span>
-                    <form action="/users/update/email/<%= user.id %>" method="post" class="flex flex-col gap-10">
-                        <input id="input2" type="text" name="email" value="<%= user.email %>" class="w-60 h-14 bg-zinc-50 outline-none pl-3 text-xl" disabled>
-                        <input id="sbtn2" type="submit" value="Save" class="w-30 h-12 bg-blue-400 text-xl text-white hidden outline-none px-4 py-2">
-                    </form>
-                </div>
-                <div class="h-60 w-full  flex flex-col gap-5 pl-10 pt-5">
-                    <span class="flex items-center gap-5">
-                        Mobile Number
-                        <p class="text-blue-400 text-xl underline" id="edit3" onclick="toggleForm(3)">Edit</p>
-                    </span>
-                    <form action="/users/update/mobile/<%= user.id %>" method="post" class="flex flex-col gap-10">
-                        <input id="input3" type="text" name="mobile" value="<%= user.mobile %>" class="w-60 h-14 bg-zinc-50 outline-none pl-3 text-xl" disabled>
-                        <input id="sbtn3" type="submit" value="Save" class="w-30 h-12 bg-blue-400 text-xl text-white hidden outline-none px-4 py-2">
-                    </form>
-                </div>
-                <div class="h-72 w-full  flex flex-col gap-5 pl-10 pt-5">
-                    <span>
-                        FAQs <br>
-                        What happens when I update my email address (or mobile number)?
-                        Your login email id (or mobile number) changes, likewise. You'll receive all your account related communication on your updated email address (or mobile number).
-                        <br>
-                        <br>
-                        When will my Shyne account be updated with the new email address (or mobile number)?
-                        It happens as soon as you confirm the verification code sent to your email (or mobile) and save the changes.
-                        <br>
-                        <br>
-                        What happens to my existing Shyne account when I update my email address (or mobile number)?
-                        Updating your email address (or mobile number) doesn't invalidate your account. Your account remains fully functional. You'll continue seeing your Order history, saved information and personal details.
-                        <br>
-                        <br>
-                        Does my Seller account get affected when I update my email address?
-                        Shyne has a 'single sign-on' policy. Any changes will reflect in your Seller account also.
-                    </span>
                 </div>
             </div>
-        </div>
-        <script>
-            function toggleForm(x) {
-                const input = document.getElementById(`input${x}`);
-                const saveBtn = document.getElementById(`sbtn${x}`);
-                const editBtn = document.getElementById(`edit${x}`);
-                
-                if (input.disabled) {
-                    input.disabled = false;
-                    saveBtn.classList.remove("hidden");
-                    editBtn.textContent = "Cancel";
-                    editBtn.style.color = "#ef4444"; // red color
-                } else {
-                    input.disabled = true;
-                    saveBtn.classList.add("hidden");
-                    editBtn.textContent = "Edit";
-                    editBtn.style.color = "#3b82f6"; // blue color
+            <!-- Right Content -->
+            <div id="rightside" class="w-full lg:w-[70%] bg-[#f0f2f5] mt-3 lg:mt-0">
+                <div id="rightsideM" class="min-h-[40rem] sm:h-[68rem] w-full bg-white flex flex-col">
+                    <!-- Flash Messages (commented out) -->
+                    <!--
+                    <% if (messages && messages.error) { %>
+                        <div class="w-full p-3 bg-red-500 text-white rounded-lg text-center m-2">
+                            <%= messages.error %>
+                        </div>
+                    <% } %>
+                    <% if (messages && messages.success) { %>
+                        <div class="w-full p-3 bg-green-500 text-white rounded-lg text-center m-2">
+                            <%= messages.success %>
+                        </div>
+                    <% } %>
+                    <% if (messages && messages.info) { %>
+                        <div class="w-full p-3 bg-blue-500 text-white rounded-lg text-center m-2">
+                            <%= messages.info %>
+                        </div>
+                    <% } %>
+                    -->
+                    <div class="h-auto sm:h-60 w-full flex flex-col gap-5 pl-2 sm:pl-10 pt-5">
+                        <span class="text-lg sm:text-2xl font-semibold flex gap-3 sm:gap-5 items-center">
+                            Personal Information
+                            <p class="text-blue-400 text-base sm:text-xl underline cursor-pointer" id="edit1" onclick="toggleForm(1)">Edit</p>
+                        </span>
+                        <form action="/users/update/name/<%= user.id %>" method="post" class="flex flex-col gap-5 sm:gap-10">
+                            <input id="input1" type="text" name="name" value="<%= user.fullname %>" class="w-full max-w-xs h-12 sm:h-14 bg-zinc-50 outline-none pl-3 text-base sm:text-xl" disabled>
+                            <input id="sbtn1" type="submit" value="Save" class="w-24 sm:w-30 h-10 sm:h-12 bg-blue-400 text-base sm:text-xl text-white hidden outline-none px-4 py-2">
+                        </form>
+                    </div>
+                    <div class="h-auto sm:h-60 w-full flex flex-col gap-5 pl-2 sm:pl-10 pt-5">
+                        <span class="flex items-center gap-3 sm:gap-5 text-base sm:text-xl">
+                            email Address
+                            <p class="text-blue-400 text-base sm:text-xl underline cursor-pointer" id="edit2" onclick="toggleForm(2)">Edit</p>
+                        </span>
+                        <form action="/users/update/email/<%= user.id %>" method="post" class="flex flex-col gap-5 sm:gap-10">
+                            <input id="input2" type="text" name="email" value="<%= user.email %>" class="w-full max-w-xs h-12 sm:h-14 bg-zinc-50 outline-none pl-3 text-base sm:text-xl" disabled>
+                            <input id="sbtn2" type="submit" value="Save" class="w-24 sm:w-30 h-10 sm:h-12 bg-blue-400 text-base sm:text-xl text-white hidden outline-none px-4 py-2">
+                        </form>
+                    </div>
+                    <div class="h-auto sm:h-60 w-full flex flex-col gap-5 pl-2 sm:pl-10 pt-5">
+                        <span class="flex items-center gap-3 sm:gap-5 text-base sm:text-xl">
+                            Mobile Number
+                            <p class="text-blue-400 text-base sm:text-xl underline cursor-pointer" id="edit3" onclick="toggleForm(3)">Edit</p>
+                        </span>
+                        <form action="/users/update/mobile/<%= user.id %>" method="post" class="flex flex-col gap-5 sm:gap-10">
+                            <input id="input3" type="text" name="mobile" value="<%= user.mobile %>" class="w-full max-w-xs h-12 sm:h-14 bg-zinc-50 outline-none pl-3 text-base sm:text-xl" disabled>
+                            <input id="sbtn3" type="submit" value="Save" class="w-24 sm:w-30 h-10 sm:h-12 bg-blue-400 text-base sm:text-xl text-white hidden outline-none px-4 py-2">
+                        </form>
+                    </div>
+                    <div class="h-auto sm:h-72 w-full flex flex-col gap-5 pl-2 sm:pl-10 pt-5 text-sm sm:text-base">
+                        <span>
+                            FAQs <br>
+                            What happens when I update my email address (or mobile number)?
+                            Your login email id (or mobile number) changes, likewise. You'll receive all your account related communication on your updated email address (or mobile number).
+                            <br>
+                            <br>
+                            When will my Shyne account be updated with the new email address (or mobile number)?
+                            It happens as soon as you confirm the verification code sent to your email (or mobile) and save the changes.
+                            <br>
+                            <br>
+                            What happens to my existing Shyne account when I update my email address (or mobile number)?
+                            Updating your email address (or mobile number) doesn't invalidate your account. Your account remains fully functional. You'll continue seeing your Order history, saved information and personal details.
+                            <br>
+                            <br>
+                            Does my Seller account get affected when I update my email address?
+                            Shyne has a 'single sign-on' policy. Any changes will reflect in your Seller account also.
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <script>
+                function toggleForm(x) {
+                    const input = document.getElementById(`input${x}`);
+                    const saveBtn = document.getElementById(`sbtn${x}`);
+                    const editBtn = document.getElementById(`edit${x}`);
+                    
+                    if (input.disabled) {
+                        input.disabled = false;
+                        saveBtn.classList.remove("hidden");
+                        editBtn.textContent = "Cancel";
+                        editBtn.style.color = "#ef4444"; // red color
+                    } else {
+                        input.disabled = true;
+                        saveBtn.classList.add("hidden");
+                        editBtn.textContent = "Edit";
+                        editBtn.style.color = "#3b82f6"; // blue color
+                    }
                 }
-            }
 
-            // Add form submission handlers
-            document.addEventListener('DOMContentLoaded', function() {
-                const forms = document.querySelectorAll('form');
-                forms.forEach(form => {
-                    form.addEventListener('submit', function(e) {
-                        // Let the form submit normally - it will redirect with flash messages
-                        // The form will submit to the server and redirect back with flash messages
+                // Add form submission handlers
+                document.addEventListener('DOMContentLoaded', function() {
+                    const forms = document.querySelectorAll('form');
+                    forms.forEach(form => {
+                        form.addEventListener('submit', function(e) {
+                            // Let the form submit normally - it will redirect with flash messages
+                            // The form will submit to the server and redirect back with flash messages
+                        });
                     });
                 });
-            });
-        </script>
-    </div>
-    <footer class="h-16 w-full bg-[#34664f] text-white py-6 px-4 fixed bottom-0 left-0 flex flex-col sm:flex-row justify-between items-center z-50">
-        <div class="flex flex-col sm:flex-row gap-4 sm:gap-10 mb-2 sm:mb-0">
-            <a href="/contact" class="hover:text-[#F1A155] transition-colors duration-200">Contact Us</a>
-            <a href="/feedback" class="hover:text-[#F1A155] transition-colors duration-200">Feedback</a>
-            <a href="/services" class="hover:text-[#F1A155] transition-colors duration-200">Services</a>
+            </script>
         </div>
-        <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
-            <span class="flex items-center gap-1">
-                Made with <span class="text-red-500 text-lg">♥</span> By                
-                <span class="font-semibold">Utkarsh</span>
-            </span>
-            <div class="flex gap-3 ml-0 sm:ml-2">
-                <a href="https://www.linkedin.com/in/utkarsh-soni-6bb1b2322/" target="_blank" rel="noopener" class="hover:text-[#0A66C2]">
-                    <i class="fab fa-linkedin fa-lg"></i>
-                </a>
-                <a href="https://github.com/utkarshsoni1" target="_blank" rel="noopener" class="hover:text-gray-400">
-                    <i class="fab fa-github fa-lg"></i>
-                </a>
-                <a href="mailto:utkarshsoni7777@gmail.com" class="hover:text-[#EA4335]">
-                    <i class="fas fa-envelope fa-lg"></i>
-                </a>
+        <!-- Footer -->
+        <footer class="h-auto sm:h-16 w-full bg-[#34664f] text-white py-4 sm:py-6 px-2 sm:px-4 fixed bottom-0 left-0 flex flex-col sm:flex-row justify-between items-center z-50">
+            <div class="flex flex-col sm:flex-row gap-2 sm:gap-10 mb-2 sm:mb-0">
+                <a href="/contact" class="hover:text-[#F1A155] transition-colors duration-200">Contact Us</a>
+                <a href="/feedback" class="hover:text-[#F1A155] transition-colors duration-200">Feedback</a>
+                <a href="/services" class="hover:text-[#F1A155] transition-colors duration-200">Services</a>
             </div>
-        </div>
-    </footer>
+            <div class="flex flex-col sm:flex-row items-center gap-1 sm:gap-4">
+                <span class="flex items-center gap-1">
+                    Made with <span class="text-red-500 text-lg">♥</span> By                
+                    <span class="font-semibold">Utkarsh</span>
+                </span>
+                <div class="flex gap-2 sm:gap-3 ml-0 sm:ml-2">
+                    <a href="https://www.linkedin.com/in/utkarsh-soni-6bb1b2322/" target="_blank" rel="noopener" class="hover:text-[#0A66C2]">
+                        <i class="fab fa-linkedin fa-lg"></i>
+                    </a>
+                    <a href="https://github.com/utkarshsoni1" target="_blank" rel="noopener" class="hover:text-gray-400">
+                        <i class="fab fa-github fa-lg"></i>
+                    </a>
+                    <a href="mailto:utkarshsoni7777@gmail.com" class="hover:text-[#EA4335]">
+                        <i class="fas fa-envelope fa-lg"></i>
+                    </a>
+                </div>
+            </div>
+        </footer>
     </div>
 </body>
 </html>

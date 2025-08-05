@@ -32,7 +32,7 @@ router.get('/addtocart/:id',isLoggedIn, async(req, res) => {
             user.cart.push(productId);
             await user.save();
             req.flash('success', 'Product added to cart successfully!');
-            res.redirect(`/shop/${user.id}`);
+            return res.redirect(`/shop/${user.id}`);
         } else {
             req.flash('info', 'Product is already in your cart');
             res.redirect(`/shop/${user.id}`);
@@ -55,7 +55,7 @@ router.get('/removefromcart/:id',isLoggedIn, async (req, res) => {
             return res.redirect(`/users/cart/${user.id}`);
         }else{
             req.flash('error', 'Something went wrong');
-            return res.redirect(`/users/cart/${req.user._id}`);
+            return res.redirect(`/users/cart/${user.id}`);
         }
     }
     catch(err){

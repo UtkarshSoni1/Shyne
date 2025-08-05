@@ -80,7 +80,7 @@
         </div>
     <% } %>
     
-    <div id="main" class="h-full w-full hide-scrollbar scrollbar-hide overflow-y-scroll">
+    <div id="main" class="h-full w-full hide-scrollbar scrollbar-hide overflow-y-scroll ">
         <div class="w-full h-[40px] flex justify-center top-0 sticky t z-20 bg-[#F9FAFB] 
         sm:h-[80px]">
             <div id="navbar" class="
@@ -94,18 +94,18 @@
                     lg:text-5xl">Shyne</h1>
                 </div>
                 <div class="
-                    w-[40%] h-2/3 pl-10 rounded-4xl bg-white flex items-center text-xl text-[#F1A155] outline-none z-50
-                    sm:w-[40%] sm:h-2/3 ">
-                    <input type="text" placeholder="search by name" name="searchInput" class="
+                    w-[40%] h-2/3 pl-4 pr-4 rounded-4xl bg-white flex items-center text-xl text-[#F1A155] outline-none z-50
+                    sm:w-[40%] sm:h-2/3 sm:pl-10">
+                    <input type="text" placeholder="Products" name="searchInput" class="
                     text-xl text-[#34664f] outline-none w-[80%]
                     sm:text-2xl ">
                     <i class="fa-solid fa-magnifying-glass  pr-0 text-xl 
                     sm:text-2xl
                     lg:text-4xl"></i>
                 </div>
-                <div class="w-[30%] h-full flex items-center text-white justify-end gap-10 text-xl pr-8
-                sm:text-2xl
-                lg:text-4xl">
+                <div class="w-[30%] bg-zinc-500 h-full flex items-center text-white justify-end gap-2 text-xl pr-2
+                sm:text-2xl sm:pr-8 sm:gap-4
+                lg:text-4xl lg:gap-10">
                     <a href="/users/cart/<%= user._id %>">
                         <i class="fa-solid fa-cart-shopping hover:text-[#F1A155]"></i>
                     </a>
@@ -237,30 +237,32 @@
 
             </div>
         </div>
-    <footer class="w-full bg-[#34664f] text-white py-6 px-4  bottom-0 left-0 flex flex-col sm:flex-row justify-between items-center z-50">
-        <div class="flex flex-col sm:flex-row gap-4 sm:gap-10 mb-2 sm:mb-0">
-            <a href="/contact" class="hover:text-[#F1A155] transition-colors duration-200">Contact Us</a>
-            <a href="/feedback" class="hover:text-[#F1A155] transition-colors duration-200">Feedback</a>
-            <a href="/services" class="hover:text-[#F1A155] transition-colors duration-200">Services</a>
+        <div>
+            <footer class="w-full bg-[#34664f] text-white py-6 px-4  bottom-0 left-0 flex flex-col sm:flex-row justify-between items-center z-50">
+                <div class="flex flex-col sm:flex-row gap-4 sm:gap-10 mb-2 sm:mb-0">
+                    <a href="/contact" class="hover:text-[#F1A155] transition-colors duration-200">Contact Us</a>
+                    <a href="/feedback" class="hover:text-[#F1A155] transition-colors duration-200">Feedback</a>
+                    <a href="/services" class="hover:text-[#F1A155] transition-colors duration-200">Services</a>
+                </div>
+                <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
+                    <span class="flex items-center gap-1">
+                        Made with <span class="text-red-500 text-lg">♥</span> By                
+                        <span class="font-semibold">Utkarsh</span>
+                    </span>
+                    <div class="flex gap-3 ml-0 sm:ml-2">
+                        <a href="https://www.linkedin.com/in/utkarsh-soni-6bb1b2322/" target="_blank" rel="noopener" class="hover:text-[#0A66C2]">
+                            <i class="fab fa-linkedin fa-lg"></i>
+                        </a>
+                        <a href="https://github.com/utkarshsoni1" target="_blank" rel="noopener" class="hover:text-gray-400">
+                            <i class="fab fa-github fa-lg"></i>
+                        </a>
+                        <a href="mailto:utkarshsoni7777@gmail.com" class="hover:text-[#EA4335]">
+                            <i class="fas fa-envelope fa-lg"></i>
+                        </a>
+                    </div>
+                </div>
+            </footer>
         </div>
-        <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
-            <span class="flex items-center gap-1">
-                Made with <span class="text-red-500 text-lg">♥</span> By                
-                <span class="font-semibold">Utkarsh</span>
-            </span>
-            <div class="flex gap-3 ml-0 sm:ml-2">
-                <a href="https://www.linkedin.com/in/utkarsh-soni-6bb1b2322/" target="_blank" rel="noopener" class="hover:text-[#0A66C2]">
-                    <i class="fab fa-linkedin fa-lg"></i>
-                </a>
-                <a href="https://github.com/utkarshsoni1" target="_blank" rel="noopener" class="hover:text-gray-400">
-                    <i class="fab fa-github fa-lg"></i>
-                </a>
-                <a href="mailto:utkarshsoni7777@gmail.com" class="hover:text-[#EA4335]">
-                    <i class="fas fa-envelope fa-lg"></i>
-                </a>
-            </div>
-        </div>
-    </footer>
     </div>
     <script>
         // Auto-hide flash messages after 3 seconds
